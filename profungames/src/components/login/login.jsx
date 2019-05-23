@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Headings from "../headings/headings";
 import "./login.css";
 class Login extends Component {
+<<<<<<< HEAD
     constructor() {
         super();
         this.state = {
@@ -22,15 +23,101 @@ class Login extends Component {
             document.getElementById("passworderror").innerHTML = "Password Required";
             document.getElementById("password").style.borderColor = "red";
         }
+=======
+  constructor() {
+    super();
+    this.state = {
+      username: "",
+      password: "",
+      RequestedAt: "",
+      date: ""
+    };
+  }
+>>>>>>> c3c1e752c72760a8b2d08a3d7a18e85e72989c04
 
-        else {
-            this.props.login({ email: this.state.email, password: this.state.password, subdomain: this.props.location.state.subdomain }).then(() => {
-                // this.props.history.push('/institutehome');
-                return;
-            })
-        }
+  onSubmit = evt => {
+    evt.preventDefault();
+    if (this.state.username === "") {
+      document.getElementById("usernamerror").innerHTML = "Email Required";
+      document.getElementById("username").style.borderColor = "red";
+    } else if (this.state.password === "") {
+      document.getElementById("passworderror").innerHTML = "Password Required";
+      document.getElementById("password").style.borderColor = "red";
+    } else {
+      this.props
+        .login({
+          email: this.state.email,
+          password: this.state.password,
+          subdomain: this.props.location.state.subdomain
+        })
+        .then(() => {
+          // this.props.history.push('/institutehome');
+          return;
+        });
     }
+  };
+  componentDidMount() {
+    var today = new Date();
+    var date =
+      today.getFullYear() +
+      "-" +
+      (today.getMonth() + 1) +
+      "-" +
+      today.getDate();
+    document.getElementById("RequestedAt").value = date;
+  }
+  render() {
+    return (
+      <div className="row">
+        <div className="col-md-12 col-sm-12 panel">
+          <div className="row">
+            <div className="col-md-6 left" />
+            <div className="col-md-6 right">
+              <Headings />
+              <div className="row">
+                <div className="col-md-12">
+                  <form onSubmit={this.onSubmit}>
+                    <div className="form-group formdes">
+                      <label>emailid</label>
+                      <input
+                        type="email"
+                        value={this.state.username}
+                        onChange={evt => {
+                          this.setState({ username: evt.target.value });
+                        }}
+                        placeholder="Enter Username"
+                        className="form-control"
+                        id="username"
+                      />
+                      <label className="text-danger" id="usernamerror" />
+                    </div>
+                    <div className="form-group formdes">
+                      <label>password</label>
+                      <input
+                        type="password"
+                        placeholder="enter password"
+                        className="form-control"
+                        value={this.state.password}
+                        onChange={evt => {
+                          this.setState({ password: evt.target.value });
+                        }}
+                        id="password"
+                      />
+                      <label className="text-danger" id="passworderror" />
+                    </div>
+                    <div className="form-group formdes datehide">
+                      <input
+                        type="text"
+                        className="form-control"
+                        value={this.state.RequestedAt}
+                        onChange={evt => {
+                          this.setState({ RequestedAt: evt.target.value });
+                        }}
+                        id="RequestedAt"
+                        disabled
+                      />
 
+<<<<<<< HEAD
     render() {
         return (
             <div className="row">
@@ -79,25 +166,29 @@ class Login extends Component {
                                                 id="RequestedAt" disabled />
                                             {/* <label className="text-danger" id="passworderror"></label> */}
                                         </div>
-
-                                        <button className="btn btn-primary btn-block" type="submit">
-                                            login
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-
-                            <div className="row">
-                                <div className="col-md-12 connectlink">
-                                    <a href="#">forgot password?</a>
-                                </div>
-                            </div>
-                        </div>
+=======
+                      {/* <label className="text-danger" id="passworderror"></label> */}
                     </div>
+>>>>>>> c3c1e752c72760a8b2d08a3d7a18e85e72989c04
+
+                    <button className="btn btn-primary btn-block" type="submit">
+                      login
+                    </button>
+                  </form>
                 </div>
+              </div>
+
+              <div className="row">
+                <div className="col-md-12 connectlink">
+                  <a href="#">forgot password?</a>
+                </div>
+              </div>
             </div>
-        );
-    }
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default Login;
