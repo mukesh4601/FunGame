@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Navbar, NavDropdown, Nav, Brand } from "react-bootstrap";
+import "./menu.css";
 class MenuBar extends Component {
   state = {};
   render() {

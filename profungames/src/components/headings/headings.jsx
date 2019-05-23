@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import "./headings.css";
 class Headings extends Component {
   constructor(props) {
     super(props);
