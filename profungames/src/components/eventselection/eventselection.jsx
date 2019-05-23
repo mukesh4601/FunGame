@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Headings from "../headings/headings";
+import Headings from "./headings";
 import { Accordion, Card } from "react-bootstrap";
 import { DropdownButton, Dropdown } from "react-bootstrap";
 class EventSelection extends Component {

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Headings from "../headings/headings";
-import MenuBar from "../menu/menu";
+import Headings from "./headings";
+import MenuBar from "./menu";
 class MobSearch extends Component {
   state = {};
 
