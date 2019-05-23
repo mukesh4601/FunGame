@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import Headings from "./headings";
-import MenuBar from "./menu";
+import Headings from "../headings/headings";
+import MenuBar from "../menu/menu";
+import "./existingcustomer.css";
 class ExistingCus extends Component {
   state = {
     // rows: []

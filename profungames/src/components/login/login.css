@@ -1,4 +1,4 @@
-/* body {
+body {
   font-family: "Montserrat", sans-serif !important;
 }
 .container-fluid {
@@ -10,7 +10,7 @@
   background-color: #fcfcfc;
 }
 .left {
-  background-image: url(images/rightlog.jpeg);
+  background-image: url(../../assests/images/rightlog.jpeg);
   background-size: contain;
   background-position: center;
   min-height: 100vh;
@@ -173,7 +173,7 @@
   text-align: right;
 }
 .bannerimg {
-  background-image: url(images/adminprofile.jpg);
+  background-image: url(../../assests/images/adminprofile.jpg);
   height: 250px;
   background-position: center top;
   background-size: cover;
@@ -268,4 +268,4 @@
   color: #fff !important;
   text-transform: capitalize;
   font-weight: 500;
-} */
+}

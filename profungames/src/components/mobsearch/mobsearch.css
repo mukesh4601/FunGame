@@ -1,16 +1,8 @@
-/* body {
-  font-family: "Montserrat", sans-serif !important;
-}
-.container-fluid {
-  padding: 0px !important;
-  height: 100vh;
-  position: relative;
-}
 .panel {
   background-color: #fcfcfc;
 }
 .left {
-  background-image: url(images/rightlog.jpeg);
+  background-image: url(../../assests/images/rightlog.jpeg);
   background-size: contain;
   background-position: center;
   min-height: 100vh;
@@ -99,7 +91,7 @@
   margin-top: 40px;
 }
 .rightmob {
-  margin-top: 100px;
+  margin-top: 150px;
 }
 .profilecontent table {
   box-shadow: 10px 6px 10px #ddd;
@@ -173,7 +165,7 @@
   text-align: right;
 }
 .bannerimg {
-  background-image: url(images/adminprofile.jpg);
+  background-image: url(../../assests/images/adminprofile.jpg);
   height: 250px;
   background-position: center top;
   background-size: cover;
@@ -268,4 +260,4 @@
   color: #fff !important;
   text-transform: capitalize;
   font-weight: 500;
-} */
+}

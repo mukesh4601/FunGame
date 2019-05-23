@@ -17,7 +17,7 @@ class Coupons extends Component {
               <div className="row">
                 <div className="col-md-12">
                   <form>
-                    <div className="form-group formdes">
+                    <div className="form-group formdes ">
                       <label>coupon number</label>
                       <input
                         type="text"
@@ -30,14 +30,23 @@ class Coupons extends Component {
               </div>
               <div className="row">
                 <div className="col-md-12 buttons">
-                  <button className="btn btn-primary btn-block" type="submit">
-                    login
-                  </button>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-md-12 connectlink">
-                  <a href="#">forgot password?</a>
+                  <div className="">
+                    <nav aria-label="Page navigation example">
+                      <ul className="pagination justify-content-center">
+                        <li className="page-item col-md-6">
+                          <a className="page-link" href="#" tabindex="-1">
+                            previous
+                          </a>
+                        </li>
+
+                        <li className="page-item col-md-6">
+                          <a className="page-link" href="#" tabindex="+1">
+                            next
+                          </a>
+                        </li>
+                      </ul>
+                    </nav>
+                  </div>
                 </div>
               </div>
             </div>
