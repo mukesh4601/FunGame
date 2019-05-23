@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Headings from "../headings/headings";
-
+import "./login.css";
 class Login extends Component {
   state = {
     emailid: "",

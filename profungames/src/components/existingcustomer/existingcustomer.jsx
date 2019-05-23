@@ -1,6 +1,12 @@
 import React, { Component } from "react";
+<<<<<<< HEAD
 // import Headings from "./headings";
 import MenuBar from "./menu";
+=======
+import Headings from "../headings/headings";
+import MenuBar from "../menu/menu";
+import "./existingcustomer.css";
+>>>>>>> 2e40de505598bb6776719d50f9f00d1443b3e5fa
 class ExistingCus extends Component {
     state = {
         // rows: []

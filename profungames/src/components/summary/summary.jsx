@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Headings from "../headings/headings";
+import "./summary.css";
 class Summary extends Component {
   state = {};
 

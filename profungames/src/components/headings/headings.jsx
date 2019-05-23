@@ -12,11 +12,9 @@ class Headings extends Component {
   render() {
     return (
       <div className="row">
-        <div className="heading">
-          <div className="col-md-12">
-            <h2>{this.state.title}</h2>
-            <p>{this.state.subtitle}</p>
-          </div>
+        <div className="col-md-12 heading">
+          <h2>{this.state.title}</h2>
+          <p>{this.state.subtitle}</p>
         </div>
       </div>
     );

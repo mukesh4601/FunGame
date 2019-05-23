@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import Headings from "./headings";
+import Headings from "../headings/headings";
 import { Accordion, Card } from "react-bootstrap";
 import { DropdownButton, Dropdown } from "react-bootstrap";
+import "./eventselection.css";
 class EventSelection extends Component {
   constructor(props) {
     super(props);
