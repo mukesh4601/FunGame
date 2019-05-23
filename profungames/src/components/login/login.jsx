@@ -11,10 +11,6 @@ class Login extends Component {
         };
     }
 
-
-
-
-
     onSubmit = (evt) => {
         evt.preventDefault();
         if (this.state.username === "") {
@@ -75,6 +71,7 @@ class Login extends Component {
 
                                             <input
                                                 type="text"
+
                                                 className="form-control"
                                                 value={this.state.RequestedAt} onChange={(evt) => {
                                                     this.setState({ RequestedAt: evt.target.value })
