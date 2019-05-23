@@ -16,7 +16,6 @@ import EventSelection from "./components/eventselection/eventselection";
 import Summary from "./components/summary/summary";
 
 const routing = (
-<<<<<<< HEAD
     <Router>
         <div>
             <Route exact path="/" component={Login} />
@@ -28,19 +27,6 @@ const routing = (
             <Route path="/coupon" component={Coupons} />
         </div>
     </Router>
-=======
-  <Router>
-    <div>
-      <Route exact path="/" component={Login} />
-      <Route path="/mobsearch" component={MobSearch} />
-      <Route path="/newentry" component={NewEntry} />
-      <Route path="/existingcus" component={ExistingCus} />
-      <Route path="/eventselection" component={EventSelection} />
-      <Route path="/summary" component={Summary} />
-      <Route path="/coupon" component={Coupons} />
-    </div>
-  </Router>
->>>>>>> 2e40de505598bb6776719d50f9f00d1443b3e5fa
 );
 
 ReactDOM.render(routing, document.getElementById("root"));

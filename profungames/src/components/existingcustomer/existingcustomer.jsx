@@ -1,42 +1,11 @@
 import React, { Component } from "react";
-<<<<<<< HEAD
-// import Headings from "./headings";
-import MenuBar from "./menu";
-=======
 import Headings from "../headings/headings";
 import MenuBar from "../menu/menu";
-import "./existingcustomer.css";
->>>>>>> 2e40de505598bb6776719d50f9f00d1443b3e5fa
 class ExistingCus extends Component {
     state = {
-        // rows: []
+
     };
-    // handleChange = idx => e => {
-    //   const { name, value } = e.target;
-    //   const rows = [...this.state.rows];
-    //   rows[idx] = {
-    //     [name]: value
-    //   };
-    //   this.setState({
-    //     rows
-    //   });
-    // };
-    // handleAddRow = () => {
-    //   const item = {
-    //     name: "",
-    //     dob: "",
-    //     childage: "",
-    //     gender: ""
-    //   };
-    //   this.setState({
-    //     rows: [...this.state.rows, item]
-    //   });
-    // };
-    // handleRemoveRow = () => {
-    //   this.setState({
-    //     rows: this.state.rows.slice(0, -1)
-    //   });
-    // };
+
     render() {
         return (
             <div className="row">
