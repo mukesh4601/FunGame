@@ -1,6 +1,8 @@
 .navigation {
   background-color: #326dcc !important;
   z-index: 500;
+  position: fixed;
+  width: 100%;
 }
 
 .navigation a {

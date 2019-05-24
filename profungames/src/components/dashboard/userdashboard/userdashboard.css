@@ -1,0 +1,14 @@
+.cards {
+  margin: 100px 20px 0px 20px;
+}
+.card {
+  box-shadow: 10px 6px 6px #ddd;
+}
+p.card-text {
+  font-size: 14px;
+  color: #212529;
+  letter-spacing: 1px;
+}
+.rgt {
+  text-align: right;
+}

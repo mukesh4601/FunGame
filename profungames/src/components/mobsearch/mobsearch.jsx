@@ -8,37 +8,34 @@ class MobSearch extends Component {
   render() {
     return (
       <div className="row">
-        <div className="col-md-12 panel">
+        <div className="col-md-12">
           <MenuBar />
           <div className="row">
-            <div className="col-md-6 left" />
-            <div className="col-md-6 right rightmob">
-              <Headings />
+            <div className="col-md-12 md12">
               <div className="row">
-                <div className="col-md-12">
-                  <form>
-                    <div className="form-group formdes">
-                      <label>mobile number</label>
-                      <input
-                        type="text"
-                        placeholder="enter mobile number"
-                        className="form-control"
-                      />
-                    </div>
-                  </form>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-md-12 buttons">
-                  <nav aria-label="Page navigation example">
-                    <ul className="pagination">
-                      <li className="page-item col-md-4">
-                        <a className="page-link" href="#" tabindex="-1">
+                <div className="col-md-6 l6" />
+                <div className="col-md-6 r6 rmob-6">
+                  <Headings />
+                  <div className="row">
+                    <div className="col-md-12">
+                      <form>
+                        <div className="form-group f-12">
+                          <label>mobile number</label>
+                          <input
+                            type="text"
+                            placeholder="enter mobile number"
+                            className="form-control"
+                          />
+                        </div>
+                        <button
+                          className="btn btn-primary btn-block"
+                          type="submit"
+                        >
                           search
-                        </a>
-                      </li>
-                    </ul>
-                  </nav>
+                        </button>
+                      </form>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

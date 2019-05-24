@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Headings from "../headings/headings";
+import MenuBar from "../menu/menu";
 import { Accordion, Card } from "react-bootstrap";
 import { DropdownButton, Dropdown } from "react-bootstrap";
 import "./eventselection.css";
@@ -14,19 +15,20 @@ class EventSelection extends Component {
   render() {
     return (
       <div className="row">
-        <div className="col-md-12 panel">
+        <div className="col-md-12">
+          <MenuBar />
           <div className="row">
-            <div className="col-md-6 left" />
-            <div className="col-md-6 right">
+            <div className="col-md-6 l-md-6" />
+            <div className="col-md-6 r-md-6">
               <Headings />
               <div className="row">
                 <div className="col-md-12">
                   <div className="evenrform">
                     <form>
-                      <div className="formdes">
+                      <div className="f-12">
                         <label>child name : priyanka</label>
                       </div>
-                      <div className="form-group formdes">
+                      <div className="form-group f-12">
                         <label>select product</label>
 
                         <Dropdown>
@@ -48,7 +50,7 @@ class EventSelection extends Component {
                         </Dropdown>
                       </div>
 
-                      <div className="form-group formdes">
+                      <div className="form-group f-12">
                         <label>select package</label>
 
                         <Dropdown>
@@ -69,7 +71,7 @@ class EventSelection extends Component {
                           </Dropdown.Menu>
                         </Dropdown>
                       </div>
-                      <div className="formdes">
+                      <div className="f-12">
                         <label>RFID</label>
                         <input
                           type="text"
@@ -77,7 +79,7 @@ class EventSelection extends Component {
                           className="form-control"
                         />
                       </div>
-                      <div className="formdes">
+                      <div className="f-12">
                         <label>money : 300 Rs.</label>
                       </div>
                     </form>

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Headings from "../headings/headings";
+import MenuBar from "../menu/menu";
 import "./summary.css";
 class Summary extends Component {
   state = {};
@@ -8,35 +9,40 @@ class Summary extends Component {
     return (
       <div className="row">
         <div className="col-md-12 panel">
+          <MenuBar />
           <div className="row">
-            <div className="col-md-6 left" />
-            <div className="col-md-6 right">
+            <div className="col-md-6 l-md-6" />
+            <div className="col-md-6 r-md-6">
               <Headings />
               <div className="row">
                 <div className="col-md-12 summarylist">
                   <h2>Summary</h2>
                   <div className="row">
-                    <div className="col-md-6">
-                      <ul>
-                        <li>parent name :</li>
-                        <li>first child name :</li>
-                        <li>product name :</li>
-                        <li>package name :</li>
-                        <li>second child name :</li>
-                        <li>product name :</li>
-                        <li>package name :</li>
-                      </ul>
-                    </div>
-                    <div className="col-md-6">
-                      <ul>
-                        <li>rajinder kumar</li>
-                        <li>priyanka</li>
-                        <li>train</li>
-                        <li>enjoy the product</li>
-                        <li>ankit</li>
-                        <li>train</li>
-                        <li>enjoy the product</li>
-                      </ul>
+                    <div className="col-md-12">
+                      <div className="row">
+                        <div className="col-md-6">
+                          <ul>
+                            <li>parent name :</li>
+                            <li>first child name :</li>
+                            <li>product name :</li>
+                            <li>package name :</li>
+                            <li>second child name :</li>
+                            <li>product name :</li>
+                            <li>package name :</li>
+                          </ul>
+                        </div>
+                        <div className="col-md-6">
+                          <ul>
+                            <li>rajinder kumar</li>
+                            <li>priyanka</li>
+                            <li>train</li>
+                            <li>enjoy the product</li>
+                            <li>ankit</li>
+                            <li>train</li>
+                            <li>enjoy the product</li>
+                          </ul>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -53,7 +59,7 @@ class Summary extends Component {
                         </li>
 
                         <li className="page-item col-md-6">
-                          <a className="page-link" href="#" tabindex="-1">
+                          <a className="page-link" href="#" tabindex="+1">
                             next
                           </a>
                         </li>
