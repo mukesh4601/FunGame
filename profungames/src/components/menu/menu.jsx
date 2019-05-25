@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Navbar, NavDropdown, Nav, Brand } from "react-bootstrap";
+import { Link } from 'react-router-dom';
 import "./menu.css";
 class MenuBar extends Component {
   state = {};
@@ -17,8 +18,8 @@ class MenuBar extends Component {
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="mr-auto">
-                <Nav.Link href="#features">home</Nav.Link>
-                <Nav.Link href="#pricing">start new business</Nav.Link>
+                <Link href="#features">home</Link>
+                <Link to="/mobsearch">start new business</Link>
                 {/* <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
                   <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">

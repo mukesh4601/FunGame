@@ -15,13 +15,13 @@ class UserDashboard extends Component {
         <div className="col-md-12">
           <MenuBar />
           <div class="row cards">
-            <div class="col-md-6">
+            <div className="col-md-6">
               <SafeZone />
             </div>
-            <div class="col-md-2">
+            <div className="col-md-2">
               <AmberZone />
             </div>
-            <div class="col-md-4">
+            <div className="col-md-4">
               <DangerZone />
             </div>
           </div>
