@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Navbar, NavDropdown, Nav, Brand } from "react-bootstrap";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import "./menu.css";
 class MenuBar extends Component {
   state = {};
@@ -14,11 +14,11 @@ class MenuBar extends Component {
             variant="dark"
             className="navigation"
           >
-            <Navbar.Brand href="#home">logo</Navbar.Brand>
+            <Navbar.Brand href="#">logo</Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="mr-auto">
-                <Link href="#features">home</Link>
+                <Link href="#">home</Link>
                 <Link to="/mobsearch">start new business</Link>
                 {/* <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
                   <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>

@@ -2,8 +2,40 @@ import React, { Component } from "react";
 import Headings from "../headings/headings";
 import MenuBar from "../menu/menu";
 import "./mobsearch.css";
+import { connect } from "react-redux";
+import actions from "../../Store/Actions/Mobile";
+import { withRouter } from "react-router";
+import { createAction } from "redux-actions";
+import axios from "axios";
+import { BACKEND_URL } from "../../config";
+
 class MobSearch extends Component {
-  state = {};
+  constructor() {
+    super();
+    this.state = {
+      mobileno: ""
+    };
+  }
+  btnClick = evt => {
+    if (this.state.mobileno != "") {
+      axios
+        .get(
+          BACKEND_URL +
+            "api/customer?SearchCriteria=0&SearchTerm=" +
+            this.state.mobileno
+        )
+        .then(
+          res => {
+            console.log("Done successful", res);
+            this.props.history.push("/existingcus");
+          },
+          err => {
+            console.log("Error");
+          }
+        );
+      return;
+    }
+  };
 
   render() {
     return (
@@ -25,11 +57,18 @@ class MobSearch extends Component {
                           type="text"
                           placeholder="enter mobile number"
                           className="form-control"
+                          id="mobileno"
+                          value={this.state.mobileno}
+                          onChange={evt => {
+                            this.setState({ mobileno: evt.target.value });
+                          }}
                         />
+                        <label className="text-danger" id="mobilenoerror" />
                       </div>
                       <button
                         className="btn btn-primary btn-block"
-                        type="submit"
+                        type="button"
+                        onClick={() => this.btnClick()}
                       >
                         search
                       </button>
@@ -44,5 +83,16 @@ class MobSearch extends Component {
     );
   }
 }
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+const mapDispatchToProps = dispatch => ({
+  searchmobile: v => dispatch(actions.searchmobile(v))
+});
 
-export default MobSearch;
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(MobSearch)
+);
