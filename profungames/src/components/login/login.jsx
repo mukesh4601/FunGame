@@ -29,15 +29,13 @@ class Login extends Component {
         } else {
             document.getElementById("usernamerror").innerHTML = "";
             document.getElementById("passworderror").innerHTML = "";
-            this.props
-                .verifyUser({
-                    username: this.state.username,
-                    password: this.state.password,
-                    RequestedAt: this.state.RequestedAt
-                })
-                .then(
-                    this.props.history.push("/userdashboard")
-                );
+            this.props.verifyUser({
+                username: this.state.username,
+                password: this.state.password,
+                RequestedAt: this.state.RequestedAt
+            }).then(
+                this.props.history.push("/userdashboard")
+            );
             return;
         }
     };

@@ -5,19 +5,18 @@ import { BACKEND_URL } from "../../config.js";
 const VERIFY_USER = createAction("VERIFY_USER");
 
 export const verifyUser = values => dispatch => {
-    console.log(values);
     return axios.post(
         BACKEND_URL + 'api/token', {
             username: values.username,
             password: values.password,
             RequestedAt: values.RequestedAt,
-            // headers: {
-            //     'Access-Control-Allow-Origin': '*'
-            // },
-            // crossdomain: true
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            },
+            crossdomain: true
         }
     ).then((res) => {
-        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("token", "Bearer " + res.data.token);
         dispatch(VERIFY_USER());
 
     }).catch(error => {
