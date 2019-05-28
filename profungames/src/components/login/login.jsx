@@ -7,7 +7,6 @@ import actions from "../../Store/Actions/Index";
 import { withRouter } from "react-router";
 
 class Login extends Component {
-<<<<<<< HEAD
     constructor() {
         super();
         this.state = {
@@ -40,50 +39,10 @@ class Login extends Component {
                 });
             return;
         }
-=======
-  constructor() {
-    super();
-    this.state = {
-      username: "",
-      password: "",
-      RequestedAt: "",
-      date: ""
->>>>>>> ffe2b3e737c2cee60b797e5c1725ffa5d9985c3a
     };
   }
 
-  onSubmit = evt => {
-    evt.preventDefault();
-    if (this.state.username === "") {
-      document.getElementById("usernamerror").innerHTML = "Email Required";
-      document.getElementById("username").style.borderColor = "red";
-    } else if (this.state.password === "") {
-      document.getElementById("usernamerror").innerHTML = "";
-      document.getElementById("passworderror").innerHTML = "Password Required";
-      document.getElementById("password").style.borderColor = "red";
-    } else {
-      document.getElementById("usernamerror").innerHTML = "";
-      document.getElementById("passworderror").innerHTML = "";
-      this.props
-        .verifyUser({
-          username: this.state.username,
-          password: this.state.password,
-          RequestedAt: this.props.RequestedAt
-        })
-        .then(
-          res => {
-            console.log("Login successful", res);
-            localStorage.setItem("token", res.data.token);
-            this.props.history.push("/userdashboard");
-            return;
-          },
-          err => {
-            console.log("Error");
-          }
-        );
-      return;
-    }
-  };
+  
 
   componentDidMount() {
     var today = new Date();
