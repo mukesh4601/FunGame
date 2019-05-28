@@ -18,13 +18,15 @@ export const verifyUser = values => dispatch => {
         }
     ).then((res) => {
         localStorage.setItem("token", res.response.data.token);
-        dispatch(VERIFY_USER(res.response))
+        dispatch(VERIFY_USER());
+
     }).catch(error => {
         document.getElementById("emailerror").innerHTML = error.response.data.errorMessage;
-        console.log(error.response.data.errorMessage);
-        // return Promise.reject();
+        return Promise.reject();
     });
 }
+
+
 
 
 

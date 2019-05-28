@@ -36,7 +36,6 @@ class Login extends Component {
                 })
                 .then(() => {
                     this.props.history.push("/mobsearch");
-                    return;
                 });
             return;
         }
