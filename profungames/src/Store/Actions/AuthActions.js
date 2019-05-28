@@ -1,5 +1,5 @@
 import { createAction } from "redux-actions";
-import axios from 'axios';
+import axios from "axios";
 import { BACKEND_URL } from "../../config.js";
 
 const VERIFY_USER = createAction("VERIFY_USER");
