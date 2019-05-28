@@ -17,7 +17,7 @@ export const verifyUser = values => dispatch => {
             // crossdomain: true
         }
     ).then((res) => {
-        localStorage.setItem("token", res.response.data.token);
+        localStorage.setItem("token", res.data.token);
         dispatch(VERIFY_USER());
 
     }).catch(error => {

@@ -1,7 +1,11 @@
 .amber h2 {
-  background-color: #eea236;
+    background-color: #eea236;
+}
+
+.amber {
+    border: 1px solid red;
 }
 
 .amber .icon a {
-  color: #eea236;
+    color: #eea236;
 }
