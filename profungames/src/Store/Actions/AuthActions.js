@@ -10,13 +10,9 @@ export const verifyUser = values => dispatch => {
             username: values.username,
             password: values.password,
             RequestedAt: values.RequestedAt,
-            headers: {
-                'Access-Control-Allow-Origin': '*'
-            },
-            crossdomain: true
         }
     ).then((res) => {
-        localStorage.setItem("token", "Bearer " + res.data.token);
+        localStorage.setItem("token", "Bearer " + res.response.token);
         dispatch(VERIFY_USER());
 
     }).catch(error => {
