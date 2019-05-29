@@ -4,47 +4,52 @@ class AmberZone extends Component {
   constructor(props) {
     super();
     this.state = {
-      childname: "Priyanka garg",
-      mobno: "1234567890",
-      rfid: "1234567890",
-      active: "Amber Zone"
+        childname: "Priyanka garg",
+        mobno: "1234567890",
+        rfid: "1234567890",
+        active: "Safe Zone"
     };
-  }
-  render() {
+}
+render() {
     return (
-      <div className="row">
-        <div className="col-md-12 safe amber">
-          <h2>{this.state.active}</h2>
+        <div className="row">
+            <div className="col-md-12 safe1">
+                <div className="row">
 
-          <div className="row">
-            <div className="col-md-12 pd12">
-              <div className="row chld">
-                <div className="col-md-12">
-                  <h3>{this.state.childname}</h3>
-                  <p>{this.state.mobno}</p>
-                  <p>{this.state.rfid}</p>
-                </div>
-                <div className="col-md-12">
-                  <div className="row">
-                    <div className="col-md-6 icon">
-                      <a href="#">
-                        <i class="fa fa-thumbs-up" aria-hidden="true" />
-                      </a>
+                    <div className="col-md-3 pd12">
+                        <div className="row chld">
+                                    <div className="col-md-12">
+                                        <p>name : <span> {this.state.childname} </span></p>
+                                        <p>mobileno : <span> {this.state.mobno} </span></p>
+                                        <p>RFID : <span> {this.state.rfid} </span></p>
+                                    </div>
+                            
+                                    <div className="col-md-12 butn2">
+                                        <div className="row">
+                                            <div className="col-md-6 btn-1">
+                                                <button className="btn btn-block">
+                                                    end
+                                                </button>
+                                            </div>
+                                            <div className="col-md-6 btn-2">
+                                                <button className="btn btn-block">
+                                                    extend
+                                                </button>
+                                            </div>
+                                        </div>
+                                                                         
+                                </div>
+                                
+                            </div>
+                        </div>
                     </div>
-                    <div className="col-md-6 icon">
-                      <a href="#">
-                        <i class="fa fa-deviantart" aria-hidden="true" />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+                    
         </div>
-      </div>
+        </div>
+
+         
     );
-  }
+}
 }
 
 export default AmberZone;

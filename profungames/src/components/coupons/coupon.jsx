@@ -5,8 +5,14 @@ import "./coupons.css";
 import { Accordion, Card } from "react-bootstrap";
 class Coupons extends Component {
   constructor(props) {
-    super(props);
+    super();
+    this.state = {
+      payment:"500 rs ",
+      modeofpayment:"500 rs ",
+      finalpayment:"500 rs ",
+    };
   }
+  
 
   render() {
     return (
@@ -23,7 +29,7 @@ class Coupons extends Component {
                     <div className="col-md-12">
                       <form>
                         <div className="f-12 ">
-                          <label>total payment : </label>
+                          <label>total payment : {this.state.payment} </label>
                         </div>
                         <div className="form-group f-12 ">
                           <div className="row">
@@ -47,10 +53,10 @@ class Coupons extends Component {
                           </div>
                         </div>
                         <div className="f-12 ">
-                          <label>Mode of payment : </label>
+                          <label>Mode of payment : {this.state.modeofpayment} </label>
                         </div>
                         <div className="f-12 ">
-                          <label>final amount : </label>
+                          <label>final amount :  {this.state.finalpayment}</label>
                         </div>
                         <div className="buttons">
                           <nav aria-label="Page navigation example row">

@@ -1,14 +1,17 @@
 import React, { Component } from "react";
 import MenuBar from "../../menu/menu";
+import {Tabs, Tab} from 'react-bootstrap'
 import SafeZone from "../userdashboard/safezone/safezone";
 import AmberZone from "../userdashboard/amberzone/amberzone";
 import DangerZone from "../userdashboard/dangerzone/dangerzone";
 import "./userdashboard.css";
 class UserDashboard extends Component {
-    constructor() {
-        super();
-        this.state = {};
-    }
+    constructor(props, context) {
+        super(props, context);
+    this.state = {
+      key: 'safezone',
+    };
+}
     render() {
         return (
             <div className="row">
@@ -16,8 +19,25 @@ class UserDashboard extends Component {
                     <MenuBar />
 
                 </div>
+                
+                <div className="col-md-12 userboard">
+                <Tabs id="controlled-tab-example" activeKey={this.state.key} onSelect={key => this.setState({ key })}>
+                    <Tab eventKey="safezone" title="safezone" className="safe">
+                    <SafeZone />
+                    <a href="#"><i className="fa fa-user-plus" aria-hidden="true"></i></a>
+                    </Tab>
+                    <Tab eventKey="amberzone" title="amberzone" className="amber">
+                    <AmberZone />
+                    </Tab>
+                    <Tab eventKey="dangerzone" title="dangerzone" className="danger">
+                    <DangerZone />
+                    </Tab>
+                </Tabs>
 
-                <div className="col-md-12">
+
+                </div>
+                
+                {/* <div className="col-md-12">
                     <div class="row cards">
                         <div className="col-md-4">
                             <SafeZone />
@@ -29,7 +49,7 @@ class UserDashboard extends Component {
                             <DangerZone />
                         </div>
                     </div>
-                </div>
+                </div> */}
 
 
             </div>
