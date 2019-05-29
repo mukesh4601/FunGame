@@ -22,6 +22,7 @@ class MobSearch extends Component {
                 pathname: '/',
             });
         }
+
     }
 
     onSubmit = (evt) => {
