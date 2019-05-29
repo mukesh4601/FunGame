@@ -3,21 +3,31 @@
   margin-top: 30px;
 }
 .profilecontent {
-  margin: 30px 0px;
+  margin-top: 30px;
+}
+.profilecontent:nth-child(2)
+{
+  margin-bottom: 30px;
 }
 .profilecontent th {
   text-transform: uppercase;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
   color: #212529;
   background-color: #ddd;
 }
 .profilecontent td {
   text-transform: initial;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 300;
   text-align: left;
 }
+td a
+{
+color: #2f6ac8;
+text-align: center;
+}
+
 .profilecontent h2 {
   font-size: 20px;
   text-transform: uppercase;
@@ -35,7 +45,7 @@
   padding: 80px 50px;
   margin-left: 613px;
   position: absolute !important;
-  top: 0;
+  top: 100px;
   height: 100vh;
   overflow: scroll;
 }
@@ -66,6 +76,4 @@
   font-weight: 500;
   color: #555;
 }
-.ch12 {
-  margin-top: 100px;
-}
+

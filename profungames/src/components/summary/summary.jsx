@@ -3,8 +3,19 @@ import Headings from "../headings/headings";
 import MenuBar from "../menu/menu";
 import "./summary.css";
 class Summary extends Component {
-  state = {};
-
+  constructor(props) {
+    super();
+    this.state = {
+      parentname:"rajinder kumar",
+      firstchildname: "Priyanka",
+      productname: "1234567890",
+      packagename: "1234567890",
+      childprofile:" child profile ",
+      secondchilname: "Priyanka",
+      productname: "1234567890",
+      packagename:"1234567890",
+    };
+  }
   render() {
     return (
       <div className="row">
@@ -33,13 +44,13 @@ class Summary extends Component {
                         </div>
                         <div className="col-md-6">
                           <ul>
-                            <li>rajinder kumar</li>
-                            <li>priyanka</li>
-                            <li>train</li>
-                            <li>enjoy the product</li>
-                            <li>ankit</li>
-                            <li>train</li>
-                            <li>enjoy the product</li>
+                            <li>{this.state.parentname}</li>
+                            <li>{this.state.firstchildname}</li>
+                            <li>{this.state.productname}</li>
+                            <li>{this.state.packagename}</li>
+                            <li>{this.state.secondchilname}</li>
+                            <li>{this.state.productname}</li>
+                            <li>{this.state.packagename}</li>
                           </ul>
                         </div>
                       </div>

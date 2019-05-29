@@ -5,24 +5,40 @@ import MenuBar from "../menu/menu";
 import "./existingcustomer.css";
 
 class ExistingCus extends Component {
-  state = {};
+  constructor(props) {
+    super();
+    this.state = {
+      parentprofile:" customer profile ",
+      firstname: "Priyanka",
+      lastname: "garg",
+      mobileno: "1234567890",
+      emailid: "1234567890",
+      childprofile:" child profile ",
+      name: "Priyanka",
+      dob: "dd-mm-yyyy",
+      age:"00",
+      gender:"female",
+      action:"xxx",
+    };
+  }
 
   render() {
     return (
       <div className="row">
         <div className="col-md-12">
           <MenuBar />
-          <div className="row">
+          </div>
+         
             <div className="col-md-12 ch12">
-              <div className="row" />
-            </div>
-            <div className="col-md-6 l-md-6" />
-            <div className="col-md-6 r-md-6">
+              <div className="row">
+
+              <div className="col-md-6 l-md-6" />
+              <div className="col-md-6 r-md-6">
               <Headings />
 
               <div className="row">
                 <div className="col-md-12 profilecontent">
-                  <h2>customer profile</h2>
+                  <h2>{this.state.parentprofile}</h2>
                   <table className="table table-bordered">
                     <thead>
                       <tr>
@@ -34,16 +50,16 @@ class ExistingCus extends Component {
                     </thead>
                     <tbody>
                       <tr>
-                        <td>priyanka</td>
-                        <td>garg</td>
-                        <td>1234567890</td>
-                        <td>demo@gmail.com</td>
+                        <td>{this.state.firstname}</td>
+                        <td>{this.state.lastname}</td>
+                        <td>{this.state.mobileno}</td>
+                        <td>{this.state.emailid}</td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
                 <div className="col-md-12 profilecontent">
-                  <h2>children profile</h2>
+                <h2>{this.state.childprofile}</h2>
                   <table className="table table-bordered">
                     <thead>
                       <tr>
@@ -55,39 +71,16 @@ class ExistingCus extends Component {
                       </tr>
                     </thead>
                     <tbody>
-                      {/* {this.state.rows.map((item, idx) => (
-                        <tr id="addr0" key={idx}>
-                          <td>{idx}</td>
-
-                          <tr>
-                            <td value={this.state.rows[idx].name} />
-                            <td value={this.state.rows[idx].dob} />
-                            <td value={this.state.rows[idx].childage} />
-                            <td value={this.state.rows[idx].gender} />
-                            <td>
-                              <div className="form-btn">
-                                <button
-                                  type="btn btn-default btn-block btn-xs"
-                                  onClick={this.handleRemoveRow}
-                                >
-                                  <i class="fa fa-trash" aria-hidden="true" />
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
-                        </tr>
-                      ))} */}
                       <tr>
-                        <td>priyanka</td>
-                        <td>30/10/1993</td>
-                        <td>25</td>
-                        <td>female</td>
+                        <td>{this.state.name}</td>
+                        <td>{this.state.dob}</td>
+                        <td>{this.state.age}</td>
+                        <td>{this.state.gender}</td>
                         <td>
-                          <div className="form-btn">
-                            <button type="btn btn-default btn-block btn-xs">
-                              <i class="fa fa-trash" aria-hidden="true" />
-                            </button>
-                          </div>
+                          <a href="#">
+                          <i class="fa fa-trash" aria-hidden="true" />
+                          </a>
+                            
                         </td>
                       </tr>
                     </tbody>
@@ -95,7 +88,7 @@ class ExistingCus extends Component {
                 </div>
 
                 <div className="col-md-12 buttons">
-                  <div className="">
+                 
                     <nav aria-label="Page navigation example">
                       <ul className="pagination justify-content-center">
                         <li className="page-item col-md-4">
@@ -116,12 +109,15 @@ class ExistingCus extends Component {
                       </ul>
                     </nav>
                   </div>
-                </div>
+              
+              </div>
               </div>
             </div>
+            
+          
+            </div>
           </div>
-        </div>
-      </div>
+
     );
   }
 }

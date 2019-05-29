@@ -19,6 +19,9 @@ import Coupons from "./components/coupons/coupon";
 import Summary from "./components/summary/summary";
 import EventSelection from "./components/eventselection/eventselection";
 import UserDashboard from "./components/dashboard/userdashboard/userdashboard";
+import SafeZone from "./components/dashboard/userdashboard/safezone/safezone";
+import AmberZone from "./components/dashboard/userdashboard/amberzone/amberzone";
+import DangerZone from "./components/dashboard/userdashboard/safezone/safezone";
 const composeEnhancers =
   (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
@@ -41,6 +44,9 @@ const routing = (
         <Route path="/summary" component={Summary} />
         <Route path="/coupon" component={Coupons} />
         <Route path="/userdashboard" component={UserDashboard} />
+        <Route path="/safezone" component={SafeZone} />
+        <Route path="/amberzone" component={AmberZone} />
+        <Route path="/dangerzone" component={DangerZone} />
       </div>
     </Router>
   </Provider>
