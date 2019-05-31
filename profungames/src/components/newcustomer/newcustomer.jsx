@@ -1,9 +1,16 @@
 import React, { Component } from "react";
+import actions from "../../Store/Actions/Index";
+import { connect } from "react-redux";
+import { withRouter } from "react-router";
 import Headings from "../headings/headings";
 import Menu from "../menu/menu";
 import "./newcustomer.css";
+import { Form, Button } from 'react-bootstrap';
+
+
+
 class NewEntry extends Component {
-    constructor() {
+    constructor(props) {
         super();
         this.state = {
             childs: [],
@@ -13,44 +20,45 @@ class NewEntry extends Component {
             lastName: null,
             mobileNbr: null,
             emailAddress: null,
+            name: null,
+            dateOfBirth: null,
+            sex: null,
+            Customer: []
         };
     }
 
-    componentDidMount() {
-        this.addNewChild();
-    }
-
-    addNewChild = () => {
-        this.setState(prevState => {
+    async addNewChild() {
+        await this.setState(prevState => {
             return {
                 childs: prevState.childs.concat({
-                    name: null,
-                    dateOfBirth: null,
-                    sex: null
-                })
+                    name: this.state.name,
+                    dateOfBirth: this.state.dateOfBirth,
+                    sex: this.state.sex
+                }),
             };
         });
     };
+
     IncrementItem = () => {
         this.setState({ clicks: this.state.clicks + 1 });
     };
 
-
-
     onSubmit = (evt) => {
         evt.preventDefault();
-        if (this.state.mobileno === "") {
-            document.getElementById("mobileerror").innerHTML = "Mobile Number Required";
-        }
-        else {
-            document.getElementById("mobileerror").innerHTML = "";
-            this.props.searchmobile({ mobileno: this.state.mobileno }).then(() => {
-                this.props.history.push({
-                    pathname: '/newentry'
-                });
-            })
-            return;
-        }
+        this.props.newcustomer({
+            Customer: {
+                FirstName: this.state.firstName,
+                LastName: this.state.lastName,
+                MobileNbr: this.state.mobileNbr,
+                EmailAddress: this.state.emailAddress,
+                Childs: this.state.childs
+            },
+        }).then(() => {
+            this.props.history.push({
+                // pathname: '/newentry'
+            });
+        })
+        return;
     }
 
     render() {
@@ -63,40 +71,39 @@ class NewEntry extends Component {
                         <div className="col-md-12 md12">
                             <div className="row">
                                 <div className="col-md-12 frm">
-                                    <div className="row">
-                                        <div className="col-md-6 cusdata lnc">
-                                            <Headings />
-                                            <div className="row">
-                                                <form className="col-md-12">
-                                                    <div className="form-group f-12">
-                                                        <div className="row">
-                                                            <div className="col-md-6">
-                                                                <input
-                                                                    type="text"
-                                                                    placeholder="enter first name"
-                                                                    className="form-control"
-                                                                    value={this.state.firstName}
-                                                                    onChange={evt => {
-                                                                        this.setState({ firstName: evt.target.value });
-                                                                    }}
-                                                                />
-                                                            </div>
+                                    <form className="col-md-12" onSubmit={this.onSubmit}>
+                                        <div className="row ">
 
-                                                            <div className="col-md-6">
-                                                                <input
-                                                                    type="text"
-                                                                    placeholder="enter last name"
-                                                                    className="form-control"
-                                                                    value={this.state.lastName}
-                                                                    onChange={evt => {
-                                                                        this.setState({ lastName: evt.target.value });
-                                                                    }}
-                                                                />
-                                                            </div>
-                                                        </div>
+                                            <div className="col-md-6 cusdata lnc" >
+                                                <Headings />
+                                                <div className="row classparents">
+
+                                                    <div className="form-group col-md-6">
+                                                        <input
+                                                            type="text"
+                                                            placeholder="enter first name"
+                                                            className="form-control"
+                                                            value={this.state.firstName}
+                                                            onChange={evt => {
+                                                                this.setState({ firstName: evt.target.value });
+                                                            }}
+                                                            required />
                                                     </div>
 
-                                                    <div className="form-group f-12">
+                                                    <div className="form-group col-md-6">
+                                                        <input
+                                                            type="text"
+                                                            placeholder="enter last name"
+                                                            className="form-control"
+                                                            value={this.state.lastName}
+                                                            onChange={evt => {
+                                                                this.setState({ lastName: evt.target.value });
+                                                            }}
+                                                            required />
+
+                                                    </div>
+
+                                                    <div className="form-group col-md-6">
                                                         <label>mobile number</label>
                                                         <input
                                                             type="number"
@@ -106,10 +113,10 @@ class NewEntry extends Component {
                                                             onChange={evt => {
                                                                 this.setState({ mobileNbr: evt.target.value });
                                                             }}
-                                                        />
+                                                            required />
                                                     </div>
 
-                                                    <div className="form-group f-12">
+                                                    <div className="form-group col-md-6">
                                                         <label>emailid</label>
                                                         <input
                                                             type="email"
@@ -119,14 +126,24 @@ class NewEntry extends Component {
                                                             onChange={evt => {
                                                                 this.setState({ emailAddress: evt.target.value });
                                                             }}
-                                                        />
+                                                            required />
                                                     </div>
-                                                </form>
-                                            </div>
-                                        </div>
 
-                                        <div className="col-md-6 cusdata rnc">
-                                            <form>
+                                                    <div className="col-md-12 justify-content-right">
+
+                                                        <button
+                                                            className="btn addchild"
+                                                            type="submit">
+                                                            Add Details
+                                                        </button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+
+                                            <div className="col-md-6 cusdata rnc">
+
                                                 {this.state.childs.map((child, index) => {
                                                     return (
                                                         <div className="childtbl" key={index}>
@@ -141,6 +158,10 @@ class NewEntry extends Component {
                                                                     type="text"
                                                                     placeholder="enter child name"
                                                                     className="form-control"
+                                                                    value={this.state.name}
+                                                                    onChange={evt => {
+                                                                        this.setState({ name: evt.target.value });
+                                                                    }}
                                                                 />
                                                             </div>
 
@@ -150,78 +171,46 @@ class NewEntry extends Component {
                                                                     type="date"
                                                                     placeholder="enter dob"
                                                                     className="form-control"
+                                                                    value={this.state.dateOfBirth}
+                                                                    onChange={evt => {
+                                                                        this.setState({ dateOfBirth: evt.target.value });
+                                                                    }}
                                                                 />
                                                             </div>
 
                                                             <div className="form-group f-12">
                                                                 <label>select gender</label>
-                                                                <div className="">
-                                                                    <label>
-                                                                        <input
-                                                                            type="radio"
-                                                                            name="gender"
-                                                                            value="male"
-                                                                            checked
-                                                                        />
-                                                                        male
-                                                                   </label>
-                                                                </div>
-                                                                <div className="radio">
-                                                                    <label>
-                                                                        <input
-                                                                            type="radio"
-                                                                            name="gender"
-                                                                            value="female"
-                                                                        />
-                                                                        female
-                                                                   </label>
-                                                                </div>
+
+                                                                <Form.Group controlId="formBasicName">
+                                                                    <Form.Control as="select" value={this.state.sex} onChange={(evt) => {
+                                                                        this.setState({ sex: evt.target.value })
+                                                                    }}>
+                                                                        <option>Select Gender</option>
+                                                                        <option>Male</option>
+                                                                        <option>Female</option>
+                                                                    </Form.Control>
+                                                                </Form.Group>
+
                                                             </div>
                                                         </div>
                                                     );
                                                 })}
-                                            </form>
-                                            <div className="row">
-                                                <div className="col-md-12 buttons">
-                                                    <div className="">
-                                                        <nav aria-label="Page navigation example">
-                                                            <ul className="pagination justify-content-center">
-                                                                <li className="page-item col-md-4">
-                                                                    <a
-                                                                        className="page-link"
-                                                                        href="#"
-                                                                        tabindex="-1"
-                                                                    >
-                                                                        previous
-                                  </a>
-                                                                </li>
-                                                                <li className="page-item col-md-4">
-                                                                    <button
-                                                                        className="btn-block"
-                                                                        onClick={event => {
-                                                                            this.addNewChild();
-                                                                            this.IncrementItem();
-                                                                        }}
-                                                                    >
-                                                                        + add child
-                                  </button>
-                                                                </li>
-                                                                <li className="page-item col-md-4">
-                                                                    <a
-                                                                        className="page-link"
-                                                                        href="#"
-                                                                        tabindex="+1"
-                                                                    >
-                                                                        next
-                                  </a>
-                                                                </li>
-                                                            </ul>
-                                                        </nav>
+
+                                                <div className="row">
+                                                    <div className="col-md-12 buttons">
+                                                        <button type="button"
+                                                            className="btn"
+                                                            onClick={event => {
+                                                                this.addNewChild();
+                                                                // this.IncrementItem();
+                                                            }}>
+                                                            + add child
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -232,4 +221,16 @@ class NewEntry extends Component {
     }
 }
 
-export default NewEntry;
+const mapStateToProps = state => ({
+
+});
+const mapDispatchToProps = dispatch => ({
+    newcustomer: v => dispatch(actions.newcustomer(v))
+});
+
+export default withRouter(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    )(NewEntry)
+);

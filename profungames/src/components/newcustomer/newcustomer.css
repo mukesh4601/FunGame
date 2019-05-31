@@ -8,6 +8,14 @@
 }
 
 
+.classparents .form-group {
+    margin-bottom: 70px;
+}
+
+.addchild {
+    float: right;
+}
+
 .cusdata input {
     text-transform: capitalize;
     font-size: 12px !important;
