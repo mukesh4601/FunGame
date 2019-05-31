@@ -9,7 +9,7 @@ export const newcustomer = values => dispatch => {
         BACKEND_URL + "/api/customer", {
             Customer: values.Customer,
             headers: {
-                Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwcml5YUBvbmV3ZWFsdGguaW4iLCJSb2xlIjoiIiwiYXV0aF90aW1lIjoiMTA6NDYiLCJqdGkiOiJiOTliMDc0MS1mM2MzLTQ0NWQtYWU0NS01YmIxMmNlNjY5NjciLCJleHAiOjE1NjAzMTY1NjIsIm5iZiI6IjE1NTkwMjA1NjIiLCJWZW51ZSI6IjEiLCJJc0FkbWluIjoiTiIsImlzcyI6IlBsYXlvLmNvbSIsImF1ZCI6IlBsYXlvLmNvbSJ9.mT4L8xjYS0CFForN4WVktHfQtDXdDImYYBKdEyYolR4"
+                Authorization: localStorage.getItem("token")
             }
         }
     ).then(res => {

@@ -27,6 +27,15 @@ class NewEntry extends Component {
         };
     }
 
+
+    async  componentDidMount() {
+        if (!localStorage.getItem("token")) {
+            this.props.history.push({
+                pathname: '/',
+            });
+        }
+    }
+
     async addNewChild() {
         await this.setState(prevState => {
             return {
