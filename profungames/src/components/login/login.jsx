@@ -33,14 +33,15 @@ class Login extends Component {
                 username: this.state.username,
                 password: this.state.password,
                 RequestedAt: this.state.RequestedAt
-            }).then(
-                this.props.history.push("/userdashboard")
-            );
+            }).then(() => {
+                this.props.history.push('/userdashboard');
+                return;
+            })
             return;
         }
     };
 
-    componentDidMount() {
+    async componentDidMount() {
         var today = new Date();
         var date =
             today.getFullYear() +
@@ -123,7 +124,7 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => ({
-    auth: state.auth
+    auth: state.Auth
 });
 const mapDispatchToProps = dispatch => ({
     verifyUser: v => dispatch(actions.verifyUser(v))

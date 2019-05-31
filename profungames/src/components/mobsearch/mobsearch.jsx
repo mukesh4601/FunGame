@@ -8,7 +8,7 @@ import { withRouter } from "react-router";
 import { Form, Button } from 'react-bootstrap';
 
 class MobSearch extends Component {
-    constructor() {
+    constructor(props) {
         super();
         this.state = {
             mobileno: ""
@@ -16,32 +16,23 @@ class MobSearch extends Component {
     }
 
     async  componentDidMount() {
-
         if (!localStorage.getItem("token")) {
             this.props.history.push({
                 pathname: '/',
             });
         }
-
     }
 
     onSubmit = (evt) => {
         evt.preventDefault();
-
         if (this.state.mobileno === "") {
             document.getElementById("mobileerror").innerHTML = "Mobile Number Required";
         }
-
         else {
             document.getElementById("mobileerror").innerHTML = "";
             this.props.searchmobile({ mobileno: this.state.mobileno }).then(() => {
-                this.props.searchmobile();
-                console.log("props" + this.props.searchmobile);
                 this.props.history.push({
-                    // pathname: '/existingcus',
-                    state: {
-                        data: this.props.customer,
-                    }
+                    pathname: '/newentry'
                 });
             })
             return;
@@ -94,7 +85,7 @@ class MobSearch extends Component {
     }
 }
 const mapStateToProps = state => ({
-    // auth: state.auth
+    Mob: state.mob
 });
 const mapDispatchToProps = dispatch => ({
     searchmobile: v => dispatch(actions.searchmobile(v))

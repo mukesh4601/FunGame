@@ -22,34 +22,37 @@ import UserDashboard from "./components/dashboard/userdashboard/userdashboard";
 import SafeZone from "./components/dashboard/userdashboard/safezone/safezone";
 import AmberZone from "./components/dashboard/userdashboard/amberzone/amberzone";
 import DangerZone from "./components/dashboard/userdashboard/safezone/safezone";
+
+import { createBrowserHistory } from 'history';
+export default createBrowserHistory();
 const composeEnhancers =
-  (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-      trace: true,
-      traceLimit: 25
-    })) ||
-  compose;
+    (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
+        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+            trace: true,
+            traceLimit: 25
+        })) ||
+    compose;
 
 const store = createStore(Reducers, composeEnhancers(applyMiddleware(thunk)));
 
 const routing = (
-  <Provider store={store}>
-    <Router>
-      <div>
-        <Route exact path="/" component={Login} />
-        <Route path="/mobsearch" component={MobSearch} />
-        <Route path="/newentry" component={NewEntry} />
-        <Route path="/existingcus" component={ExistingCus} />
-        <Route path="/eventselection" component={EventSelection} />
-        <Route path="/summary" component={Summary} />
-        <Route path="/coupon" component={Coupons} />
-        <Route path="/userdashboard" component={UserDashboard} />
-        <Route path="/safezone" component={SafeZone} />
-        <Route path="/amberzone" component={AmberZone} />
-        <Route path="/dangerzone" component={DangerZone} />
-      </div>
-    </Router>
-  </Provider>
+    <Provider store={store}>
+        <Router>
+            <div>
+                <Route exact path="/" component={Login} />
+                <Route path="/mobsearch" component={MobSearch} />
+                <Route path="/newentry" component={NewEntry} />
+                <Route path="/existingcus" component={ExistingCus} />
+                <Route path="/eventselection" component={EventSelection} />
+                <Route path="/summary" component={Summary} />
+                <Route path="/coupon" component={Coupons} />
+                <Route path="/userdashboard" component={UserDashboard} />
+                <Route path="/safezone" component={SafeZone} />
+                <Route path="/amberzone" component={AmberZone} />
+                <Route path="/dangerzone" component={DangerZone} />
+            </div>
+        </Router>
+    </Provider>
 );
 
 ReactDOM.render(routing, document.getElementById("root"));
