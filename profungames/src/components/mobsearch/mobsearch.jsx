@@ -32,7 +32,7 @@ class MobSearch extends Component {
             document.getElementById("mobileerror").innerHTML = "";
             this.props.searchmobile({ mobileno: this.state.mobileno }).then(() => {
                 this.props.history.push({
-                    pathname: '/newentry'
+                    // pathname: '/newentry'
                 });
             })
             return;

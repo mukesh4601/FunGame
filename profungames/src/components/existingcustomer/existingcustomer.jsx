@@ -1,125 +1,161 @@
 import React, { Component } from "react";
 import Headings from "../headings/headings";
 import MenuBar from "../menu/menu";
-
+import actions from "../../Store/Actions/Index";
+import { connect } from "react-redux";
+import { withRouter } from "react-router";
 import "./existingcustomer.css";
 
 class ExistingCus extends Component {
-  constructor(props) {
-    super();
-    this.state = {
-      parentprofile:" customer profile ",
-      firstname: "Priyanka",
-      lastname: "garg",
-      mobileno: "1234567890",
-      emailid: "1234567890",
-      childprofile:" child profile ",
-      name: "Priyanka",
-      dob: "dd-mm-yyyy",
-      age:"00",
-      gender:"female",
-      action:"xxx",
-    };
-  }
+    constructor(props) {
+        super();
+        this.state = {
+            parentprofile: " customer profile ",
+            firstname: null,
+            lastname: null,
+            mobileno: null,
+            emailid: null,
+            childprofile: " child profile ",
+            name: null,
+            dob: null,
+            age: null,
+            gender: null,
+            action: null,
+        };
+    }
 
-  render() {
-    return (
-      <div className="row">
-        <div className="col-md-12">
-          <MenuBar />
-          </div>
-         
-            <div className="col-md-12 ch12">
-              <div className="row">
 
-              <div className="col-md-6 l-md-6" />
-              <div className="col-md-6 r-md-6">
-              <Headings />
 
-              <div className="row">
-                <div className="col-md-12 profilecontent">
-                  <h2>{this.state.parentprofile}</h2>
-                  <table className="table table-bordered">
-                    <thead>
-                      <tr>
-                        <th>first name</th>
-                        <th>last name</th>
-                        <th>mobile no</th>
-                        <th>emailid</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>{this.state.firstname}</td>
-                        <td>{this.state.lastname}</td>
-                        <td>{this.state.mobileno}</td>
-                        <td>{this.state.emailid}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div className="col-md-12 profilecontent">
-                <h2>{this.state.childprofile}</h2>
-                  <table className="table table-bordered">
-                    <thead>
-                      <tr>
-                        <th>name</th>
-                        <th>date of birth</th>
-                        <th>age</th>
-                        <th>gender</th>
-                        <th>action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>{this.state.name}</td>
-                        <td>{this.state.dob}</td>
-                        <td>{this.state.age}</td>
-                        <td>{this.state.gender}</td>
-                        <td>
-                          <a href="#">
-                          <i class="fa fa-trash" aria-hidden="true" />
-                          </a>
-                            
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+    async  componentDidMount() {
+        if (!localStorage.getItem("token")) {
+            this.props.history.push({
+                pathname: '/',
+            });
+        }
+
+        console.log(this.props.location.state);
+        await this.props.searchemobile();
+        this.setState({ firstName: this.props.newuser.userdetails.item.firstName });
+        this.setState({ lastname: this.props.newuser.userdetails.item.lastName });
+        this.setState({ mobileno: this.props.newuser.userdetails.item.mobileNbr });
+        this.setState({ emailid: this.props.newuser.userdetails.item.emailAddress });
+
+        let alluser = [];
+        for (var i = 0; i < alluser; i++) {
+            this.setState({ name: this.props.newuser.userdetails.item.childs[i].name });
+            this.setState({ dob: this.props.newuser.userdetails.item.childs[i].dateOfBirth });
+            this.setState({ gender: this.props.newuser.userdetails.item.childs[i].sex });
+        }
+    }
+
+    onSubmit = async (evt) => {
+        evt.preventDefault();
+        this.props.history.push({
+            pathname: '/eventselection',
+            state: {
+                alldetails: this.props.newuser.userdetails.item,
+            }
+        });
+    }
+
+    render() {
+        return (
+            <div className="row">
+                <div className="col-md-12">
+                    <MenuBar />
                 </div>
 
-                <div className="col-md-12 buttons">
-                 
-                    <nav aria-label="Page navigation example">
-                      <ul className="pagination justify-content-center">
-                        <li className="page-item col-md-4">
-                          <a className="page-link" href="#" tabindex="-1">
-                            previous
-                          </a>
-                        </li>
-                        <li className="page-item col-md-4">
-                          <a className="page-link" href="#" tabindex="-1">
-                            undo
-                          </a>
-                        </li>
-                        <li className="page-item col-md-4">
-                          <a className="page-link" href="#" tabindex="-1">
-                            next
-                          </a>
-                        </li>
-                      </ul>
-                    </nav>
-                  </div>
-              
-              </div>
-              </div>
-            </div>
-            
-          
-            </div>
-          </div>
+                <div className="col-md-12 ch12">
+                    <div className="row">
 
-    );
-  }
+                        <div className="col-md-6 l-md-6" />
+                        <div className="col-md-6 r-md-6">
+                            <Headings />
+
+                            <div className="row">
+                                <div className="col-md-12 profilecontent">
+                                    <h2>{this.state.parentprofile}</h2>
+                                    <table className="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>first name</th>
+                                                <th>last name</th>
+                                                <th>mobile no</th>
+                                                <th>emailid</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>{this.state.firstName}</td>
+                                                <td>{this.state.lastname}</td>
+                                                <td>{this.state.mobileno}</td>
+                                                <td>{this.state.emailid}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div className="col-md-12 profilecontent">
+                                    <h2>{this.state.childprofile}</h2>
+                                    <table className="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>name</th>
+                                                <th>date of birth</th>
+                                                <th>gender</th>
+                                                <th>action</th>
+                                            </tr>
+                                        </thead>
+                                        {this.props.newuser.userdetails.item && this.props.newuser.userdetails.item.childs && this.props.newuser.userdetails.item.childs.map((alluser, index) => (
+                                            <tbody>
+                                                <tr>
+                                                    <td>{alluser.name}</td>
+                                                    <td>{alluser.dateOfBirth}</td>
+                                                    {/* <td>{this.state.age}</td> */}
+                                                    <td>{alluser.sex}</td>
+                                                    <td>
+                                                        <a href="#">
+                                                            <i class="fa fa-trash" aria-hidden="true" />
+                                                        </a>
+
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        ))}
+                                    </table>
+                                </div>
+
+                                <div className="col-md-12 buttons">
+                                    <div className="row">
+                                        <div className="col-md-6">
+                                            <button className="btn btn-block">Back</button>
+                                        </div>
+                                        <div className="col-md-6">
+                                            <button className="btn btn-block" onClick={this.onSubmit}>Next</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        );
+    }
 }
 
-export default ExistingCus;
+
+const mapStateToProps = state => ({
+    newuser: state.mob
+});
+const mapDispatchToProps = dispatch => ({
+    searchemobile: (v) => dispatch(actions.searchemobile(v))
+});
+
+export default withRouter(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    )(ExistingCus)
+);

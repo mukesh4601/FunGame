@@ -1,7 +1,7 @@
 import { handleActions } from "redux-actions";
 
 const INITIAL_STATE = {
-    zxc: "",
+    Newuser: [],
     userfound: false
 };
 const NewCustomer = handleActions(

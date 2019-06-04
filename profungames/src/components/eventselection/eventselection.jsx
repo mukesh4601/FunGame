@@ -1,118 +1,153 @@
 import React, { Component } from "react";
 import Headings from "../headings/headings";
 import MenuBar from "../menu/menu";
-import { Accordion, Card } from "react-bootstrap";
-import { DropdownButton, Dropdown } from "react-bootstrap";
 import "./eventselection.css";
+import { Form } from 'react-bootstrap';
+
+import actions from "../../Store/Actions/Index";
+import { connect } from "react-redux";
+import { withRouter } from "react-router";
 class EventSelection extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      childname: "Priyanka"
-    };
-  }
+    constructor(props) {
+        super();
+        this.state = {
+            childname: "Priyanka",
+            money: null,
+            selectedProduct: null,
+            linkedPackages: []
+        };
+    }
 
-  render() {
-    return (
-      <div className="row">
-        <div className="col-md-12">
-          <MenuBar />
-          <div className="row">
-            <div className="col-md-6 l-md-6" />
-            <div className="col-md-6 r-md-6">
-              <Headings />
-              <div className="row">
+    async  componentDidMount() {
+        if (!localStorage.getItem("token")) {
+            this.props.history.push({
+                pathname: '/',
+            });
+        }
+        await this.props.allproducts();
+        console.log(this.props.products.products.items);
+        let allproducts = [];
+        let allpackages = [];
+        for (var i = 0; i < allproducts; i++) {
+
+        }
+        for (var j = 0; j < allpackages; j++) {
+        }
+    }
+
+    onformsubmit = (evt) => {
+        evt.preventDefault();
+
+        this.props.history.push({
+            pathname: '/coupon',
+            state: {
+                alldetails: {
+                    money: this.state.money,
+                }
+            }
+        })
+    }
+
+    render() {
+        return (
+            <div className="row" >
                 <div className="col-md-12">
-                  <div className="evenrform">
-                    <form>
-                      <div className="f-12">
-                        <label>child name : priyanka</label>
-                      </div>
-                      <div className="form-group f-12">
-                        <label>select product</label>
+                    <MenuBar />
+                    <div className="row">
+                        <div className="col-md-6 l-md-6" />
+                        <div className="col-md-6 r-md-6">
+                            <Headings />
+                            <div className="row">
+                                <div className="col-md-12">
+                                    <div className="evenrform">
+                                        <form onSubmit={this.onformsubmit}>
+                                            <div className="f-12">
+                                                <label>child name : priyanka</label>
+                                            </div>
+                                            <div className="form-group f-12">
+                                                <label>select product</label>
 
-                        <Dropdown>
-                          <Dropdown.Toggle id="dropdown-basic">
-                            select product
-                          </Dropdown.Toggle>
+                                                <Form.Group controlId="formBasicName">
+                                                    <Form.Control as="select" value={this.state.firstName}
+                                                        onChange={(evt) => {
+                                                            let product = this.props.products.products.items.filter((p) => p.productID == evt.target.value);
+                                                            let packages = product[0].linkedPackages || [];
+                                                            this.setState({ 'selectedProduct': evt.target.value, 'linkedPackages': packages })
+                                                        }} >
+                                                        <option>Select Product</option>
+                                                        {this.props.products.products.items && this.props.products.products.items && this.props.products.products.items.map((allproducts, index) => (
+                                                            <option value={allproducts.productID}> {allproducts.name}   ( {allproducts.description}  )</option>
+                                                        ))}
+                                                    </Form.Control>
+                                                </Form.Group>
 
-                          <Dropdown.Menu>
-                            <Dropdown.Item href="#/action-1">
-                              train
-                            </Dropdown.Item>
-                            <Dropdown.Item href="#/action-2">
-                              ice cream
-                            </Dropdown.Item>
-                            <Dropdown.Item href="#/action-3">
-                              ship
-                            </Dropdown.Item>
-                          </Dropdown.Menu>
-                        </Dropdown>
-                      </div>
+                                            </div>
 
-                      <div className="form-group f-12">
-                        <label>select package</label>
+                                            <div className="form-group f-12" >
+                                                <label>select package</label>
 
-                        <Dropdown>
-                          <Dropdown.Toggle id="dropdown-basic">
-                            select package
-                          </Dropdown.Toggle>
+                                                <Form.Group controlId="formBasicName">
+                                                    <Form.Control as="select" id="money" value={this.state.money} onChange={evt => {
+                                                        this.setState({ money: evt.target.value });
+                                                    }}>
+                                                        {this.state.linkedPackages.map((p) => {
+                                                            return (
+                                                                <option value={p.money} >   Package Name :  {p.name} --
+                                                                    Package Duration :  {p.duration} Mins --
+                                                                    Total Money :  {p.money} </option>
+                                                            )
+                                                        })}
+                                                    </Form.Control>
+                                                </Form.Group>
+                                            </div>
+                                            <div className="f-12">
+                                                <label>RFID</label>
+                                                <input
+                                                    type="text"
+                                                    placeholder="enter rfid"
+                                                    className="form-control"
+                                                />
+                                            </div>
+                                            <div className="f-12">
+                                                <label> Money : {this.state.money}</label>
+                                            </div>
+                                            <div className="row">
+                                                <div className="col-md-12 buttons">
+                                                    <div className="row">
+                                                        <div className="col-md-6 text-left">
+                                                            <button className="btn btn-block">Previous</button>
+                                                        </div>
+                                                        <div className="col-md-6 text-left">
+                                                            <button className="btn btn-block" type="submit">Next</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
 
-                          <Dropdown.Menu>
-                            <Dropdown.Item href="#/action-1">
-                              rs 100 for 1 hour
-                            </Dropdown.Item>
-                            <Dropdown.Item href="#/action-2">
-                              rs200 for 2 hour
-                            </Dropdown.Item>
-                            <Dropdown.Item href="#/action-3">
-                              rs 300 for 3 hour
-                            </Dropdown.Item>
-                          </Dropdown.Menu>
-                        </Dropdown>
-                      </div>
-                      <div className="f-12">
-                        <label>RFID</label>
-                        <input
-                          type="text"
-                          placeholder="enter rfid"
-                          className="form-control"
-                        />
-                      </div>
-                      <div className="f-12">
-                        <label>money : 300 Rs.</label>
-                      </div>
-                    </form>
-                  </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div className="row">
-                <div className="col-md-12 buttons">
-                  <div className="">
-                    <nav aria-label="Page navigation example">
-                      <ul className="pagination justify-content-center">
-                        <li className="page-item col-md-6">
-                          <a className="page-link" href="#" tabindex="-1">
-                            previous
-                          </a>
-                        </li>
-
-                        <li className="page-item col-md-6">
-                          <a className="page-link" href="#" tabindex="-1">
-                            next
-                          </a>
-                        </li>
-                      </ul>
-                    </nav>
-                  </div>
-                </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+        );
+    }
 }
 
-export default EventSelection;
+
+
+const mapStateToProps = state => ({
+    products: state.allproducts
+});
+const mapDispatchToProps = dispatch => ({
+    allproducts: (v) => dispatch(actions.allproducts(v)),
+});
+
+export default withRouter(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    )(EventSelection)
+);

@@ -1,13 +1,16 @@
 import { handleActions } from "redux-actions";
 
 const INITIAL_STATE = {
-    zxc: "",
+    userdetails: [],
     userfound: false
 };
 const MobAuthReducer = handleActions(
     {
         SEARCH_MOBILE: (state, action) => {
-            return { ...state, userfound: true, ...action.payload };
+            return { ...state, userfound: true, userdetails: action.payload };
+        },
+        SEARCHE_MOBILE: (state, action) => {
+            return { ...state, userfound: true, userdetails: action.payload };
         }
     },
     INITIAL_STATE

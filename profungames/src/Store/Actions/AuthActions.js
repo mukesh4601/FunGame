@@ -17,6 +17,7 @@ export const verifyUser = values => dispatch => {
         })
         .then(res => {
             localStorage.setItem("token", "Bearer " + res.data.token);
+
             dispatch(VERIFY_USER());
         })
         .catch(error => {

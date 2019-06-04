@@ -12,6 +12,7 @@ class MenuBar extends Component {
     logout = async (evt) => {
         evt.preventDefault();
         localStorage.removeItem("token");
+        localStorage.removeItem("mobilenumber");
         this.props.history.push({
             pathname: '/',
         });

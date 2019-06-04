@@ -11,6 +11,7 @@ import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.css";
 import { Route, BrowserRouter as Router } from "react-router-dom";
 
+
 import Login from "./components/login/login";
 import MobSearch from "./components/mobsearch/mobsearch";
 import NewEntry from "./components/newcustomer/newcustomer";
@@ -24,7 +25,8 @@ import AmberZone from "./components/dashboard/userdashboard/amberzone/amberzone"
 import DangerZone from "./components/dashboard/userdashboard/safezone/safezone";
 
 import { createBrowserHistory } from 'history';
-export default createBrowserHistory();
+const history = createBrowserHistory();
+
 const composeEnhancers =
     (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
         window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
@@ -37,7 +39,7 @@ const store = createStore(Reducers, composeEnhancers(applyMiddleware(thunk)));
 
 const routing = (
     <Provider store={store}>
-        <Router>
+        <Router history={history}>
             <div>
                 <Route exact path="/" component={Login} />
                 <Route path="/mobsearch" component={MobSearch} />

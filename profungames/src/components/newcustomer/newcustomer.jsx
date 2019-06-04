@@ -10,10 +10,11 @@ import { Form, Button } from 'react-bootstrap';
 
 
 class NewEntry extends Component {
-    constructor(props) {
+    constructor() {
         super();
         this.state = {
             childs: [],
+            childss: [],
             clicks: 1,
             show: true,
             firstName: null,
@@ -23,10 +24,9 @@ class NewEntry extends Component {
             name: null,
             dateOfBirth: null,
             sex: null,
-            Customer: []
+            Customer: [],
         };
     }
-
 
     async  componentDidMount() {
         if (!localStorage.getItem("token")) {
@@ -52,9 +52,9 @@ class NewEntry extends Component {
         this.setState({ clicks: this.state.clicks + 1 });
     };
 
-    onSubmit = (evt) => {
+    onSubmit = async (evt) => {
         evt.preventDefault();
-        this.props.newcustomer({
+        await this.props.newcustomer({
             Customer: {
                 FirstName: this.state.firstName,
                 LastName: this.state.lastName,
@@ -64,10 +64,12 @@ class NewEntry extends Component {
             },
         }).then(() => {
             this.props.history.push({
-                // pathname: '/newentry'
+                pathname: '/existingcus',
+                state: {
+                    allcustomerdetails: this.state.Customer,
+                }
             });
         })
-        return;
     }
 
     render() {
@@ -75,7 +77,6 @@ class NewEntry extends Component {
             <div className="row">
                 <div className="col-md-12">
                     <Menu />
-
                     <div className="row  customerpanel">
                         <div className="col-md-12 md12">
                             <div className="row">
@@ -138,15 +139,17 @@ class NewEntry extends Component {
                                                             required />
                                                     </div>
 
-                                                    <div className="col-md-12 justify-content-right">
+                                                    <div className="form-group col-md-12">
+                                                        <label id="childerror" className="text-danger"></label>
+                                                    </div>
 
+                                                    <div className="col-md-12 justify-content-right">
                                                         <button
                                                             className="btn addchild"
                                                             type="submit">
                                                             Add Details
                                                         </button>
                                                     </div>
-
                                                 </div>
                                             </div>
 
@@ -157,49 +160,59 @@ class NewEntry extends Component {
                                                     return (
                                                         <div className="childtbl" key={index}>
                                                             <div className="row">
-                                                                <div className="col-md-12 childno">
+                                                                {/* <div className="col-md-12 childno">
                                                                     <p>Child {this.state.clicks}</p>
+                                                                </div> */}
+
+                                                                <div className="form-group col-md-4 f-12">
+                                                                    <label>child name</label>
+                                                                    <input
+                                                                        type="text"
+                                                                        placeholder="enter child name"
+                                                                        className="form-control"
+                                                                        value={this.state.name}
+                                                                        onChange={(e) => {
+                                                                            let val = e.target.value
+                                                                            this.setState(function (prevState) {
+                                                                                prevState.childs[index].name = val;
+                                                                            });
+                                                                        }}
+                                                                        id="nameofchild"
+                                                                    />
                                                                 </div>
-                                                            </div>
-                                                            <div className="form-group f-12">
-                                                                <label>child name</label>
-                                                                <input
-                                                                    type="text"
-                                                                    placeholder="enter child name"
-                                                                    className="form-control"
-                                                                    value={this.state.name}
-                                                                    onChange={evt => {
-                                                                        this.setState({ name: evt.target.value });
-                                                                    }}
-                                                                />
-                                                            </div>
 
-                                                            <div className="form-group f-12">
-                                                                <label>date of birth</label>
-                                                                <input
-                                                                    type="date"
-                                                                    placeholder="enter dob"
-                                                                    className="form-control"
-                                                                    value={this.state.dateOfBirth}
-                                                                    onChange={evt => {
-                                                                        this.setState({ dateOfBirth: evt.target.value });
-                                                                    }}
-                                                                />
-                                                            </div>
+                                                                <div className="form-group col-md-4 f-12">
+                                                                    <label>date of birth</label>
+                                                                    <input
+                                                                        type="date"
+                                                                        placeholder="enter dob"
+                                                                        className="form-control"
+                                                                        value={this.state.dateOfBirth}
+                                                                        onChange={(e) => {
+                                                                            let val = e.target.value
+                                                                            this.setState(function (prevState) {
+                                                                                prevState.childs[index].dateOfBirth = val;
+                                                                            });
+                                                                        }}
+                                                                    />
+                                                                </div>
+                                                                <div className="form-group col-md-4 f-12">
+                                                                    <label>select gender</label>
 
-                                                            <div className="form-group f-12">
-                                                                <label>select gender</label>
+                                                                    <Form.Group controlId="formBasicName">
+                                                                        <Form.Control as="select" value={this.state.sex} onChange={(e) => {
+                                                                            let val = e.target.value
+                                                                            this.setState(function (prevState) {
+                                                                                prevState.childs[index].sex = val;
+                                                                            });
+                                                                        }}>
+                                                                            <option>Select Gender</option>
+                                                                            <option>Male</option>
+                                                                            <option>Female</option>
+                                                                        </Form.Control>
+                                                                    </Form.Group>
 
-                                                                <Form.Group controlId="formBasicName">
-                                                                    <Form.Control as="select" value={this.state.sex} onChange={(evt) => {
-                                                                        this.setState({ sex: evt.target.value })
-                                                                    }}>
-                                                                        <option>Select Gender</option>
-                                                                        <option>Male</option>
-                                                                        <option>Female</option>
-                                                                    </Form.Control>
-                                                                </Form.Group>
-
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     );
