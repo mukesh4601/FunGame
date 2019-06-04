@@ -34,6 +34,12 @@ class NewEntry extends Component {
                 pathname: '/',
             });
         }
+        let search = window.location.search;
+        let params = new URLSearchParams(search);
+        let foo = params.get('mobilenumber');
+        document.getElementById("mobilenumber").value = foo;
+        document.getElementById("mobilenumber").disabled = true;
+        this.setState({ mobileNbr: foo })
     }
 
     async addNewChild() {
@@ -48,9 +54,6 @@ class NewEntry extends Component {
         });
     };
 
-    IncrementItem = () => {
-        this.setState({ clicks: this.state.clicks + 1 });
-    };
 
     onSubmit = async (evt) => {
         evt.preventDefault();
@@ -120,10 +123,8 @@ class NewEntry extends Component {
                                                             placeholder="enter mobile no"
                                                             className="form-control"
                                                             value={this.state.mobileNbr}
-                                                            onChange={evt => {
-                                                                this.setState({ mobileNbr: evt.target.value });
-                                                            }}
-                                                            required />
+
+                                                            required id="mobilenumber" />
                                                     </div>
 
                                                     <div className="form-group col-md-6">

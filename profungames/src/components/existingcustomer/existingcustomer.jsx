@@ -8,7 +8,7 @@ import "./existingcustomer.css";
 
 class ExistingCus extends Component {
     constructor(props) {
-        super();
+        super(props);
         this.state = {
             parentprofile: " customer profile ",
             firstname: null,
@@ -21,7 +21,9 @@ class ExistingCus extends Component {
             age: null,
             gender: null,
             action: null,
+            childname: null
         };
+        console.log(this.props);
     }
 
 
@@ -32,8 +34,6 @@ class ExistingCus extends Component {
                 pathname: '/',
             });
         }
-
-        console.log(this.props.location.state);
         await this.props.searchemobile();
         this.setState({ firstName: this.props.newuser.userdetails.item.firstName });
         this.setState({ lastname: this.props.newuser.userdetails.item.lastName });
@@ -48,12 +48,16 @@ class ExistingCus extends Component {
         }
     }
 
-    onSubmit = async (evt) => {
-        evt.preventDefault();
+    show = (alluser) => {
         this.props.history.push({
-            pathname: '/eventselection',
+            pathname: '/eventselection?childname=' + alluser.name,
             state: {
-                alldetails: this.props.newuser.userdetails.item,
+                summary: {
+                    customerID: this.props.newuser.userdetails.item.customerId,
+                    mobilenumber: this.props.newuser.userdetails.item.mobileNbr,
+                    childId: alluser.customerChildID,
+                    childName: alluser.name
+                }
             }
         });
     }
@@ -113,8 +117,8 @@ class ExistingCus extends Component {
                                                     {/* <td>{this.state.age}</td> */}
                                                     <td>{alluser.sex}</td>
                                                     <td>
-                                                        <a href="#">
-                                                            <i class="fa fa-trash" aria-hidden="true" />
+                                                        <a href="#" onClick={(evt) => this.show(alluser)}>
+                                                            <i class="fa fa-arrow-right" aria-hidden="true"></i> Book Packages
                                                         </a>
 
                                                     </td>
@@ -129,9 +133,7 @@ class ExistingCus extends Component {
                                         <div className="col-md-6">
                                             <button className="btn btn-block">Back</button>
                                         </div>
-                                        <div className="col-md-6">
-                                            <button className="btn btn-block" onClick={this.onSubmit}>Next</button>
-                                        </div>
+
                                     </div>
                                 </div>
 

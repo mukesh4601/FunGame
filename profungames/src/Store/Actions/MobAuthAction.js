@@ -26,7 +26,7 @@ export const searchmobile = values => dispatch => {
         }
 
         else {
-            window.location.href = '/newentry';
+            window.location.href = '/newentry?mobilenumber=' + values.mobileno;
             dispatch(SEARCH_MOBILE(res.data));
         }
         console.log(res.data.didError);

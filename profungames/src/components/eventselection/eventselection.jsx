@@ -11,7 +11,7 @@ class EventSelection extends Component {
     constructor(props) {
         super();
         this.state = {
-            childname: "Priyanka",
+            childname: null,
             money: null,
             selectedProduct: null,
             linkedPackages: []
@@ -25,7 +25,6 @@ class EventSelection extends Component {
             });
         }
         await this.props.allproducts();
-        console.log(this.props.products.products.items);
         let allproducts = [];
         let allpackages = [];
         for (var i = 0; i < allproducts; i++) {
@@ -33,6 +32,14 @@ class EventSelection extends Component {
         }
         for (var j = 0; j < allpackages; j++) {
         }
+        console.log(this.props);
+        // this.setState({
+        //     childname: this.props.location.state.alldetails.name,
+        // });
+        let search = window.location.search;
+        let params = new URLSearchParams(search);
+        let foo = params.get('childname');
+        this.setState({ childname: foo })
     }
 
     onformsubmit = (evt) => {
@@ -62,7 +69,7 @@ class EventSelection extends Component {
                                     <div className="evenrform">
                                         <form onSubmit={this.onformsubmit}>
                                             <div className="f-12">
-                                                <label>child name : priyanka</label>
+                                                <label>child name : {this.state.childname}</label>
                                             </div>
                                             <div className="form-group f-12">
                                                 <label>select product</label>
