@@ -9,7 +9,7 @@ import "./existingcustomer.css";
 
 class ExistingCus extends Component {
     constructor(props) {
-        super();
+        super(props);
         this.state = {
             parentprofile: " customer profile ",
             firstname: null,
@@ -49,7 +49,8 @@ class ExistingCus extends Component {
 
     onsubmit = (alluser) => {
         this.props.history.push({
-            pathname: '/eventselection?childname=' + alluser.name,
+            pathname: '/eventselection',
+            search: "?childname=" + alluser.name,
             state: {
                 summary: {
                     customerID: this.props.newuser.userdetails.item.customerId,

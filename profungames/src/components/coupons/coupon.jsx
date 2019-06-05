@@ -10,7 +10,7 @@ import { Form, Button } from 'react-bootstrap';
 
 class Coupons extends Component {
     constructor(props) {
-        super();
+        super(props);
         this.state = {
             payment: null,
             modeofpayment: "Cash",
@@ -24,10 +24,10 @@ class Coupons extends Component {
                 pathname: '/',
             });
         }
-        this.setState({
-            payment: this.props.location.state.alldetails.money,
-            finalpayment: this.props.location.state.alldetails.money
-        });
+        // this.setState({
+        //     payment: this.props.location.state.alldetails.money,
+        //     finalpayment: this.props.location.state.alldetails.money
+        // });
         console.log(this.props.location.state);
     }
 

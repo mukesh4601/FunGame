@@ -9,12 +9,18 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 class EventSelection extends Component {
     constructor(props) {
-        super();
+        super(props);
+        console.log(this.props);
         this.state = {
             childname: null,
             money: null,
             selectedProduct: null,
-            linkedPackages: []
+            linkedPackages: [],
+            packageduration: null,
+            packageID: null,
+            ProductID: null,
+            summary: null,
+            array: null
         };
     }
 
@@ -32,27 +38,29 @@ class EventSelection extends Component {
         }
         for (var j = 0; j < allpackages; j++) {
         }
-        console.log(this.props);
-        // this.setState({
-        //     childname: this.props.location.state.alldetails.name,
-        // });
+
         let search = window.location.search;
         let params = new URLSearchParams(search);
         let foo = params.get('childname');
         this.setState({ childname: foo })
+        console.log(this.props.location.state);
+        // this.setState({ summary: this.props.location.state.summary })
     }
 
     onformsubmit = (evt) => {
         evt.preventDefault();
-
         this.props.history.push({
             pathname: '/coupon',
-            //     // state: {
-            //     //     summary: {
-            //     //         eventselection: this.props.location.state.summary,
-            //     //         money: this.state.money,
-            //     //     }
-            // }
+            state: {
+                summary: {
+                    summary: this.state.summary,
+                    packagedetails: {
+                        packageduration: this.state.packageduration,
+                        packageID: this.state.packageID,
+                        ProductID: this.state.ProductID
+                    }
+                }
+            }
         })
     }
 
@@ -80,11 +88,11 @@ class EventSelection extends Component {
                                                         onChange={(evt) => {
                                                             let product = this.props.products.products.items.filter((p) => p.productID == evt.target.value);
                                                             let packages = product[0].linkedPackages || [];
-                                                            this.setState({ 'selectedProduct': evt.target.value, 'linkedPackages': packages })
+                                                            this.setState({ 'selectedProduct': evt.target.value, 'linkedPackages': packages, ProductID: evt.target.value })
                                                         }} >
                                                         <option>Select Product</option>
                                                         {this.props.products.products.items && this.props.products.products.items && this.props.products.products.items.map((allproducts, index) => (
-                                                            <option value={allproducts.productID}> {allproducts.name}   ( {allproducts.description}  )</option>
+                                                            <option value={allproducts.productID}    > {allproducts.name}   ( {allproducts.description}  )</option>
                                                         ))}
                                                     </Form.Control>
                                                 </Form.Group>
@@ -96,11 +104,11 @@ class EventSelection extends Component {
 
                                                 <Form.Group controlId="formBasicName">
                                                     <Form.Control as="select" id="money" value={this.state.money} onChange={evt => {
-                                                        this.setState({ money: evt.target.value });
+                                                        this.setState({ money: evt.target.value.money, packageduration: evt.target.value.duration, packageID: evt.target.value.packageID })
                                                     }}>
                                                         {this.state.linkedPackages.map((p) => {
                                                             return (
-                                                                <option value={p.money} >   Package Name :  {p.name} --
+                                                                <option value={p} >   Package Name :  {p.name} --
                                                                     Package Duration :  {p.duration} Mins --
                                                                     Total Money :  {p.money} </option>
                                                             )
