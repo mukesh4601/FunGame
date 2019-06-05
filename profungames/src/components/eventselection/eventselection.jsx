@@ -47,11 +47,12 @@ class EventSelection extends Component {
 
         this.props.history.push({
             pathname: '/coupon',
-            state: {
-                alldetails: {
-                    money: this.state.money,
-                }
-            }
+            //     // state: {
+            //     //     summary: {
+            //     //         eventselection: this.props.location.state.summary,
+            //     //         money: this.state.money,
+            //     //     }
+            // }
         })
     }
 

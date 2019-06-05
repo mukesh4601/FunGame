@@ -6,9 +6,10 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import "./existingcustomer.css";
 
+
 class ExistingCus extends Component {
     constructor(props) {
-        super(props);
+        super();
         this.state = {
             parentprofile: " customer profile ",
             firstname: null,
@@ -21,9 +22,7 @@ class ExistingCus extends Component {
             age: null,
             gender: null,
             action: null,
-            childname: null
         };
-        console.log(this.props);
     }
 
 
@@ -48,7 +47,7 @@ class ExistingCus extends Component {
         }
     }
 
-    show = (alluser) => {
+    onsubmit = (alluser) => {
         this.props.history.push({
             pathname: '/eventselection?childname=' + alluser.name,
             state: {
@@ -117,7 +116,7 @@ class ExistingCus extends Component {
                                                     {/* <td>{this.state.age}</td> */}
                                                     <td>{alluser.sex}</td>
                                                     <td>
-                                                        <a href="#" onClick={(evt) => this.show(alluser)}>
+                                                        <a href="#" onClick={(evt) => this.onsubmit(alluser)}>
                                                             <i class="fa fa-arrow-right" aria-hidden="true"></i> Book Packages
                                                         </a>
 
@@ -132,6 +131,10 @@ class ExistingCus extends Component {
                                     <div className="row">
                                         <div className="col-md-6">
                                             <button className="btn btn-block">Back</button>
+                                        </div>
+
+                                        <div className="col-md-6">
+                                            <button className="btn btn-block">Cancel</button>
                                         </div>
 
                                     </div>
