@@ -85,3 +85,7 @@ button:hover {
 button:focus {
     box-shadow: none !important;
 }
+.small
+{
+    text-transform: initial !important;
+}

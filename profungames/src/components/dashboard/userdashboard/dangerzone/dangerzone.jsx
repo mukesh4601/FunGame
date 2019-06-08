@@ -22,12 +22,12 @@ class DangerZone extends Component {
                             <div className="col-md-6 btn-1">
                                 <button className="btn btn-block">
                                     end
-                                                    </button>
+                                </button>
                             </div>
                             <div className="col-md-6 btn-2">
                                 <button className="btn btn-block">
                                     extend
-                                                    </button>
+                                </button>
                             </div>
                         </div>
                     </div>

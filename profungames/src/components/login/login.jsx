@@ -71,7 +71,7 @@ class Login extends Component {
                                                     this.setState({ username: evt.target.value });
                                                 }}
                                                 placeholder="Enter Username"
-                                                className="form-control"
+                                                className="form-control small"
                                                 id="username"
                                             />
                                             <label className="text-danger" id="usernamerror" />
@@ -80,8 +80,8 @@ class Login extends Component {
                                             <label>password</label>
                                             <input
                                                 type="password"
-                                                placeholder="enter password"
-                                                className="form-control"
+                                                placeholder="Enter Password"
+                                                className="form-control small"
                                                 value={this.state.password}
                                                 onChange={evt => {
                                                     this.setState({ password: evt.target.value });

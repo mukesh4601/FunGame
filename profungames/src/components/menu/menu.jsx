@@ -29,8 +29,8 @@ class MenuBar extends Component {
                         <Navbar.Brand href="#">logo</Navbar.Brand>
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                         <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
-                            <Link href="#">home</Link>
-                            <Link to="/mobsearch">start new business</Link>
+                            <Link to="/userdashboard">home</Link>
+                            {/* <Link to="/mobsearch">start new business</Link> */}
                             <Link onClick={this.logout}>Logout</Link>
                         </Navbar.Collapse>
                     </Navbar>

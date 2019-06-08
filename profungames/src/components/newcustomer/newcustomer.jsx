@@ -94,7 +94,7 @@ class NewEntry extends Component {
                                                     <div className="form-group col-md-6">
                                                         <input
                                                             type="text"
-                                                            placeholder="enter first name"
+                                                            placeholder="Enter First Name"
                                                             className="form-control"
                                                             value={this.state.firstName}
                                                             onChange={evt => {
@@ -106,7 +106,7 @@ class NewEntry extends Component {
                                                     <div className="form-group col-md-6">
                                                         <input
                                                             type="text"
-                                                            placeholder="enter last name"
+                                                            placeholder="Enter Last Name"
                                                             className="form-control"
                                                             value={this.state.lastName}
                                                             onChange={evt => {
@@ -120,7 +120,7 @@ class NewEntry extends Component {
                                                         <label>mobile number</label>
                                                         <input
                                                             type="number"
-                                                            placeholder="enter mobile no"
+                                                            placeholder="Enter Number"
                                                             className="form-control"
                                                             value={this.state.mobileNbr}
 
@@ -131,8 +131,8 @@ class NewEntry extends Component {
                                                         <label>emailid</label>
                                                         <input
                                                             type="email"
-                                                            placeholder="enter email"
-                                                            className="form-control"
+                                                            placeholder="Enter Email"
+                                                            className="form-control small"
                                                             value={this.state.emailAddress}
                                                             onChange={evt => {
                                                                 this.setState({ emailAddress: evt.target.value });

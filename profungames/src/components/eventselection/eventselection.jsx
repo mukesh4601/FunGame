@@ -7,6 +7,7 @@ import { Form } from 'react-bootstrap';
 import actions from "../../Store/Actions/Index";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
+import { transform } from "@babel/core";
 class EventSelection extends Component {
     constructor(props) {
         super(props);
@@ -81,7 +82,7 @@ class EventSelection extends Component {
                                     <div className="evenrform">
                                         <form onSubmit={this.onformsubmit}>
                                             <div className="f-12">
-                                                <label>child name : {this.state.childname}</label>
+                                                <label>child name : <span className="capital"> {this.state.childname} </span></label>
                                             </div>
                                             <div className="form-group f-12">
                                                 <label>select product</label>

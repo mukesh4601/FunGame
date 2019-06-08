@@ -7,6 +7,8 @@ import DangerZone from "../userdashboard/dangerzone/dangerzone";
 import { connect } from "react-redux";
 import actions from "../../../Store/Actions/Index";
 import { withRouter } from "react-router";
+import { Router, Route, Link } from 'react-router-dom'
+import "./userdashboard.css"
 
 import "./userdashboard.css";
 
@@ -88,7 +90,7 @@ class UserDashboard extends Component {
                 </div>
 
                 <div className="col-md-12 userboard">
-
+                    <Link className="adduer" to="/mobsearch"><i class="fa fa-user-plus" aria-hidden="true"></i></Link>
                     <Tabs id="controlled-tab-example" activeKey={this.state.key} onSelect={key => this.setState({ key })}   >
                         <Tab eventKey="safezone" title="safezone" className="safe">
                             <div className="row">
