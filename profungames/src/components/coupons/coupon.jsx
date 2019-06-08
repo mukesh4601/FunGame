@@ -15,7 +15,8 @@ class Coupons extends Component {
             payment: null,
             modeofpayment: "Cash",
             finalpayment: null,
-            couponcode: null
+            couponcode: null,
+            RFIDID: null
         };
     }
     async  componentDidMount() {
@@ -52,9 +53,24 @@ class Coupons extends Component {
 
     sumbitalldetails = async (evt) => {
         evt.preventDefault();
+        let paredetails = localStorage.getItem("parentdetails");
+        let result = JSON.parse(paredetails);
+        let productdetail = localStorage.getItem("productdetails");
+        let presult = JSON.parse(productdetail);
         await this.props.activity({
-
+            CustomerID: result.customerID,
+            ActualMoneyCollected: this.state.finalpayment,
+            TotalPackageCost: this.state.payment,
+            Childs: [{
+                ChildID: result.childId,
+                PackageID: presult.ProductID,
+                RFIDFlag: true,
+                RFIDID: this.state.RFIDID
+            }]
         }).then(() => {
+            this.props.history.push({
+                pathname: '/userdashboard',
+            });
         })
     }
 
@@ -74,7 +90,7 @@ class Coupons extends Component {
                                 <div className="col-md-6 r-md-6">
                                     <Headings />
                                     <div className="row">
-                                        <form onSubmit={this.onSubmit}>
+                                        <form onSubmit={this.sumbitalldetails}>
                                             <div className="col-md-12">
 
                                                 <div className="f-12 ">
@@ -137,6 +153,7 @@ const mapStateToProps = state => ({
 });
 const mapDispatchToProps = dispatch => ({
     couponcheck: (v) => dispatch(actions.couponcheck(v)),
+    activity: (v) => dispatch(actions.activity(v)),
     getmodeofpayment: (v) => dispatch(actions.getmodeofpayment(v)),
 });
 

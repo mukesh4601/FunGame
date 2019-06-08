@@ -23,8 +23,9 @@ export const dashboardata = values => dispatch => {
 };
 
 export const activity = values => dispatch => {
+    console.log(values);
     return axios.post(
-        BACKEND_URL + "api/customer", {
+        BACKEND_URL + "api/activity", {
             CustomerID: values.CustomerID,
             ActualMoneyCollected: values.ActualMoneyCollected,
             TotalPackageCost: values.TotalPackageCost,
