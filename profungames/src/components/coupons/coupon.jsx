@@ -24,28 +24,43 @@ class Coupons extends Component {
                 pathname: '/',
             });
         }
-        // this.setState({
-        //     payment: this.props.location.state.alldetails.money,
-        //     finalpayment: this.props.location.state.alldetails.money
-        // });
-        console.log(this.props.location.state);
+        await this.props.getmodeofpayment();
+        let paredetails = localStorage.getItem("parentdetails");
+        let result = JSON.parse(paredetails);
+        let productdetail = localStorage.getItem("productdetails");
+        let presult = JSON.parse(productdetail);
+        this.setState({
+            payment: presult.money,
+            finalpayment: presult.money
+        });
+        console.log(this.props.payment.modeofpayment.items);
+        let paymentmode = [];
+        for (var i = 0; i < paymentmode; i++) {
+
+        }
     }
 
-    async componentWillReceiveProps() {
-        await this.props.couponcheck();
-        console.log(this.props.coupons);
-    }
 
-
-    onSubmit = async (evt) => {
+    getmodeofpayment = async (evt) => {
         evt.preventDefault();
-        this.props.history.push({
-            pathname: '/summary',
-            state: {
-                alldetails: this.props.location.state.alldetails,
-            }
+        await this.props.getmodeofpayment({
+        }).then(() => {
         })
     }
+
+
+
+    sumbitalldetails = async (evt) => {
+        evt.preventDefault();
+        await this.props.activity({
+
+        }).then(() => {
+        })
+    }
+
+
+
+
 
     render() {
         return (
@@ -65,45 +80,27 @@ class Coupons extends Component {
                                                 <div className="f-12 ">
                                                     <label>total payment : <strong>{this.state.payment} </strong></label>
                                                 </div>
-                                                {/* <div className="form-group f-12 ">
+
+                                                <div className="f-12 ">
                                                     <div className="row">
                                                         <div className="col-md-12">
-                                                            <div className="row">
-                                                                <div className="col-md-12">
-                                                                    <label className="form-group">coupon code</label>
-                                                                </div>
-                                                                <div className="col-md-6">
-                                                                    <input
-                                                                        type="text"
-                                                                        placeholder="coupon no"
-                                                                        className="form-control col-md-12" value={this.state.couponcode} onChange={evt => {
-                                                                            this.setState({ couponcode: evt.target.value });
-                                                                        }} />
-                                                                </div>
-
-                                                                <div className="col-md-6">
-                                                                    <button
-                                                                        className="col-md-12"
-                                                                        type="btn btn-block">
-                                                                        check
-                                                                 </button>
-                                                                </div>
-                                                            </div>
+                                                            <label>Mode of payment : <strong> {this.state.modeofpayment}</strong> </label>
+                                                        </div>
+                                                        <div className="col-md-12">
+                                                            <Form.Group controlId="formBasicName">
+                                                                <Form.Control as="select" value={this.state.modeofpayment} onChange={evt => {
+                                                                    this.setState({ modeofpayment: evt.target.value });
+                                                                }}>
+                                                                    {this.props.payment.modeofpayment.items && this.props.payment.modeofpayment.items && this.props.payment.modeofpayment.items.map((paymentmode) => {
+                                                                        return (
+                                                                            <option >   {paymentmode.paymentName}
+                                                                            </option>
+                                                                        )
+                                                                    })}
+                                                                </Form.Control>
+                                                            </Form.Group>
                                                         </div>
                                                     </div>
-                                                </div> */}
-                                                <div className="f-12 ">
-                                                    <label>Mode of payment : <strong> {this.state.modeofpayment}</strong> </label>
-
-                                                    <Form.Group controlId="formBasicName">
-                                                        <Form.Control as="select" value={this.state.modeofpayment} onChange={evt => {
-                                                            this.setState({ modeofpayment: evt.target.value });
-                                                        }}>
-                                                            <option>Cash</option>
-                                                            <option>Paytm</option>
-                                                            <option>Net Banking</option>
-                                                        </Form.Control>
-                                                    </Form.Group>
                                                 </div>
                                                 <div className="f-12 ">
                                                     <label>final amount : <strong> {this.state.finalpayment}</strong></label>
@@ -111,11 +108,11 @@ class Coupons extends Component {
                                                 <div className="row">
                                                     <div className="col-md-12 buttons">
                                                         <div className="row">
-                                                            <div className="col-md-6 text-left">
+                                                            {/* <div className="col-md-6 text-left">
                                                                 <button className="btn btn-block">Previous</button>
-                                                            </div>
+                                                            </div> */}
                                                             <div className="col-md-6 text-left">
-                                                                <button className="btn btn-block" type="submit">Next</button>
+                                                                <button className="btn btn-block" type="submit">Buy</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -135,10 +132,12 @@ class Coupons extends Component {
 
 
 const mapStateToProps = state => ({
-    coupons: state.allproducts
+    coupons: state.allproducts,
+    payment: state.allproducts
 });
 const mapDispatchToProps = dispatch => ({
     couponcheck: (v) => dispatch(actions.couponcheck(v)),
+    getmodeofpayment: (v) => dispatch(actions.getmodeofpayment(v)),
 });
 
 export default withRouter(

@@ -20,8 +20,12 @@ class EventSelection extends Component {
             packageID: null,
             ProductID: null,
             summary: null,
-            array: null
+            array: null,
+            listofproducts: sessionStorage.getItem("products"),
+            productname: null,
+            packagename: null
         };
+        console.log(this.props.details);
     }
 
     async  componentDidMount() {
@@ -30,7 +34,7 @@ class EventSelection extends Component {
                 pathname: '/',
             });
         }
-        await this.props.allproducts();
+        // await this.props.allproducts();
         let allproducts = [];
         let allpackages = [];
         for (var i = 0; i < allproducts; i++) {
@@ -38,33 +42,32 @@ class EventSelection extends Component {
         }
         for (var j = 0; j < allpackages; j++) {
         }
-
         let search = window.location.search;
         let params = new URLSearchParams(search);
         let foo = params.get('childname');
         this.setState({ childname: foo })
-        console.log(this.props.location.state);
-        // this.setState({ summary: this.props.location.state.summary })
     }
 
     onformsubmit = (evt) => {
         evt.preventDefault();
-        this.props.history.push({
-            pathname: '/coupon',
-            state: {
-                summary: {
-                    summary: this.state.summary,
-                    packagedetails: {
-                        packageduration: this.state.packageduration,
-                        packageID: this.state.packageID,
-                        ProductID: this.state.ProductID
-                    }
-                }
-            }
+
+        let packagedetails = ({
+            packageduration: this.state.packageduration,
+            packageID: this.state.packageID,
+            ProductID: this.state.ProductID,
+            money: this.state.money,
+            productname: this.state.productname,
+            packagename: this.state.packagename
         })
+        localStorage.setItem("productdetails", JSON.stringify(packagedetails));
+        this.props.history.push({
+            pathname: '/summary',
+        });
     }
 
+
     render() {
+        let AllListofProducts = JSON.parse(this.state.listofproducts);
         return (
             <div className="row" >
                 <div className="col-md-12">
@@ -86,13 +89,15 @@ class EventSelection extends Component {
                                                 <Form.Group controlId="formBasicName">
                                                     <Form.Control as="select" value={this.state.firstName}
                                                         onChange={(evt) => {
-                                                            let product = this.props.products.products.items.filter((p) => p.productID == evt.target.value);
+                                                            let productresult = JSON.parse(evt.target.value);
+                                                            let product = AllListofProducts.filter((p) => p.productID == productresult.productID);
                                                             let packages = product[0].linkedPackages || [];
-                                                            this.setState({ 'selectedProduct': evt.target.value, 'linkedPackages': packages, ProductID: evt.target.value })
+                                                            this.setState({ 'selectedProduct': evt.target.value, 'linkedPackages': packages, ProductID: productresult.productID, productname: productresult.name })
                                                         }} >
                                                         <option>Select Product</option>
-                                                        {this.props.products.products.items && this.props.products.products.items && this.props.products.products.items.map((allproducts, index) => (
-                                                            <option value={allproducts.productID}    > {allproducts.name}   ( {allproducts.description}  )</option>
+
+                                                        {AllListofProducts && AllListofProducts && AllListofProducts.map((allproducts, index) => (
+                                                            <option value={JSON.stringify(allproducts)}    > {allproducts.name}   ( {allproducts.description}  )</option>
                                                         ))}
                                                     </Form.Control>
                                                 </Form.Group>
@@ -104,11 +109,12 @@ class EventSelection extends Component {
 
                                                 <Form.Group controlId="formBasicName">
                                                     <Form.Control as="select" id="money" value={this.state.money} onChange={evt => {
-                                                        this.setState({ money: evt.target.value.money, packageduration: evt.target.value.duration, packageID: evt.target.value.packageID })
-                                                    }}>
+                                                        let result = JSON.parse(evt.target.value);
+                                                        this.setState({ money: result.money, packageduration: result.duration, packageID: result.packageID, packagename: result.name })
+                                                    }} >
                                                         {this.state.linkedPackages.map((p) => {
                                                             return (
-                                                                <option value={p} >   Package Name :  {p.name} --
+                                                                <option value={JSON.stringify(p)} >   Package Name :  {p.name} --
                                                                     Package Duration :  {p.duration} Mins --
                                                                     Total Money :  {p.money} </option>
                                                             )
@@ -130,9 +136,7 @@ class EventSelection extends Component {
                                             <div className="row">
                                                 <div className="col-md-12 buttons">
                                                     <div className="row">
-                                                        <div className="col-md-6 text-left">
-                                                            <button className="btn btn-block">Previous</button>
-                                                        </div>
+
                                                         <div className="col-md-6 text-left">
                                                             <button className="btn btn-block" type="submit">Next</button>
                                                         </div>
@@ -155,7 +159,8 @@ class EventSelection extends Component {
 
 
 const mapStateToProps = state => ({
-    products: state.allproducts
+    products: state.allproducts,
+    details: state.newuser
 });
 const mapDispatchToProps = dispatch => ({
     allproducts: (v) => dispatch(actions.allproducts(v)),

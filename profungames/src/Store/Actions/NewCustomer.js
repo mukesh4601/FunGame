@@ -3,6 +3,7 @@ import axios from "axios";
 import { BACKEND_URL } from "../../config.js";
 
 const NEW_CUSTOMER = createAction("NEW_CUSTOMER");
+const DETAILS = createAction("DETAILS");
 export const newcustomer = values => dispatch => {
     return axios.post(
         BACKEND_URL + "api/customer", {
@@ -25,6 +26,29 @@ export const newcustomer = values => dispatch => {
             return Promise.reject();
         });
 };
+
+
+
+export const details = values => dispatch => {
+    let data = {
+        parentdetails: {
+            customerID: values.customerID,
+            mobilenumber: values.mobilenumber,
+            childId: values.childId,
+            childName: values.childName,
+            parentfirstname: values.parentfirstname,
+            parentlastname: values.parentfirstname
+        }
+    }
+    dispatch(DETAILS(data));
+    return values;
+};
+
+
+
+
+
+
 
 
 

@@ -4,7 +4,7 @@ import MenuBar from "../menu/menu";
 import "./summary.css";
 class Summary extends Component {
     constructor(props) {
-        super();
+        super(props);
         this.state = {
             parentname: "rajinder kumar",
             firstchildname: "Priyanka",
@@ -14,13 +14,28 @@ class Summary extends Component {
             secondchilname: "Priyanka",
             productname: "1234567890",
             packagename: "1234567890",
+            parentlastname: ""
         };
-    }
-
-
-    componentDidMount() {
         console.log(this.props.location);
     }
+    async  componentDidMount() {
+        localStorage.getItem("parentdetails", "productdetails");
+        let paredetails = localStorage.getItem("parentdetails");
+        let result = JSON.parse(paredetails);
+        let productdetail = localStorage.getItem("productdetails");
+        let presult = JSON.parse(productdetail);
+        this.setState({ parentname: result.parentfirstname })
+        this.setState({ firstchildname: result.parentlastname })
+        this.setState({ parentlastname: result.childName })
+        this.setState({ productname: presult.productname })
+        this.setState({ packagename: presult.packagename })
+    }
+
+    onsubmit = (alluser) => {
+        this.props.history.push({
+            pathname: '/coupon',
+        });
+    };
 
 
 
@@ -45,18 +60,13 @@ class Summary extends Component {
                                                         <li>first child name :</li>
                                                         <li>product name :</li>
                                                         <li>package name :</li>
-                                                        <li>second child name :</li>
-                                                        <li>product name :</li>
-                                                        <li>package name :</li>
+
                                                     </ul>
                                                 </div>
                                                 <div className="col-md-6">
                                                     <ul>
-                                                        <li>{this.state.parentname}</li>
+                                                        <li>{this.state.parentname} {this.state.parentlastname}  </li>
                                                         <li>{this.state.firstchildname}</li>
-                                                        <li>{this.state.productname}</li>
-                                                        <li>{this.state.packagename}</li>
-                                                        <li>{this.state.secondchilname}</li>
                                                         <li>{this.state.productname}</li>
                                                         <li>{this.state.packagename}</li>
                                                     </ul>
@@ -71,15 +81,10 @@ class Summary extends Component {
                                     <div className="">
                                         <nav aria-label="Page navigation example">
                                             <ul className="pagination justify-content-center">
-                                                <li className="page-item col-md-6">
-                                                    <a className="page-link" href="#" tabindex="-1">
-                                                        previous
-                          </a>
-                                                </li>
 
                                                 <li className="page-item col-md-6">
-                                                    <a className="page-link" href="#" tabindex="+1">
-                                                        next
+                                                    <a className="page-link" href="#" tabindex="+1" onClick={this.onsubmit}>
+                                                        Confirm
                           </a>
                                                 </li>
                                             </ul>

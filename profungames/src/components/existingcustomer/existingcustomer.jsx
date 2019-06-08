@@ -25,8 +25,6 @@ class ExistingCus extends Component {
         };
     }
 
-
-
     async  componentDidMount() {
         if (!localStorage.getItem("token")) {
             this.props.history.push({
@@ -47,20 +45,23 @@ class ExistingCus extends Component {
         }
     }
 
+
     onsubmit = (alluser) => {
+        let details = ({
+            customerID: this.props.newuser.userdetails.item.customerId,
+            mobilenumber: this.props.newuser.userdetails.item.mobileNbr,
+            childId: alluser.customerChildID,
+            childName: alluser.name,
+            parentfirstname: this.state.firstName,
+            parentlastname: this.state.lastname
+        })
+        localStorage.setItem("parentdetails", JSON.stringify(details));
         this.props.history.push({
             pathname: '/eventselection',
             search: "?childname=" + alluser.name,
-            state: {
-                summary: {
-                    customerID: this.props.newuser.userdetails.item.customerId,
-                    mobilenumber: this.props.newuser.userdetails.item.mobileNbr,
-                    childId: alluser.customerChildID,
-                    childName: alluser.name
-                }
-            }
         });
-    }
+    };
+
 
     render() {
         return (
@@ -156,7 +157,8 @@ const mapStateToProps = state => ({
     newuser: state.mob
 });
 const mapDispatchToProps = dispatch => ({
-    searchemobile: (v) => dispatch(actions.searchemobile(v))
+    searchemobile: (v) => dispatch(actions.searchemobile(v)),
+    details: (v) => dispatch(actions.details(v)),
 });
 
 export default withRouter(

@@ -35,6 +35,18 @@ class UserDashboard extends Component {
             });
         }
         await this.props.dashboardata();
+        await this.props.allproducts();
+        let allproducts = [];
+        let allpackages = [];
+        for (var i = 0; i < allproducts; i++) {
+
+        }
+        for (var j = 0; j < allpackages; j++) {
+        }
+        sessionStorage.setItem("products", JSON.stringify(this.props.products.products.items));
+        let result = sessionStorage.getItem("items");
+
+        console.log(result);
     }
 
     safeZoneMarkup() {
@@ -109,12 +121,14 @@ class UserDashboard extends Component {
 
 function mapStateToProps(state) {
     return {
-        itemss: state.zone
+        itemss: state.zone,
+        products: state.allproducts
     }
 }
 
 const mapDispatchToProps = dispatch => ({
-    dashboardata: (v) => dispatch(actions.dashboardata(v))
+    dashboardata: (v) => dispatch(actions.dashboardata(v)),
+    allproducts: (v) => dispatch(actions.allproducts(v)),
 })
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserDashboard));
 
