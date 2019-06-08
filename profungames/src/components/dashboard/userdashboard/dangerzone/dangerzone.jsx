@@ -1,11 +1,26 @@
 import React, { Component } from "react";
+import { Modal}  from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import "./dangerzone.css";
+
 class DangerZone extends Component {
-    constructor(props) {
-        super();
+    constructor(props, context) {
+        super(props, context);
         this.state = {
+            show: false,
         };
+        this.handleShow = this.handleShow.bind(this);
+        this.handleClose = this.handleClose.bind(this);
     }
+
+    handleClose() {
+        this.setState({ show: false });
+      }
+    
+      handleShow() {
+        this.setState({ show: true });
+      }
+    
     render() {
         return (
 
@@ -23,11 +38,26 @@ class DangerZone extends Component {
                                 <button className="btn btn-block">
                                     end
                                 </button>
+                              
                             </div>
                             <div className="col-md-6 btn-2">
-                                <button className="btn btn-block">
+                                <Button className="btn btn-block"  onClick={this.handleShow}>
                                     extend
-                                </button>
+                                </Button>
+                                <Modal show={this.state.show} onHide={this.handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Modal heading</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={this.handleClose}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={this.handleClose}>
+              Save Changes
+            </Button>
+          </Modal.Footer>
+        </Modal>
                             </div>
                         </div>
                     </div>
