@@ -13,6 +13,8 @@ class MenuBar extends Component {
         evt.preventDefault();
         localStorage.removeItem("token");
         localStorage.removeItem("mobilenumber");
+        localStorage.removeItem("parentdetails");
+        localStorage.removeItem("productdetails");
         this.props.history.push({
             pathname: '/',
         });
@@ -29,7 +31,7 @@ class MenuBar extends Component {
                         <Navbar.Brand href="#">logo</Navbar.Brand>
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                         <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
-                            <Link href="#">home</Link>
+                            <Link href="/userdashboard">home</Link>
                             <Link to="/mobsearch">start new business</Link>
                             <Link onClick={this.logout}>Logout</Link>
                         </Navbar.Collapse>
