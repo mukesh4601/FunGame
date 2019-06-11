@@ -53,7 +53,7 @@ class ExistingCus extends Component {
             childId: alluser.customerChildID,
             childName: alluser.name,
             parentfirstname: this.state.firstName,
-            parentlastname: this.state.lastname
+            parentlastname: this.state.lastname,
         })
         localStorage.setItem("parentdetails", JSON.stringify(details));
         this.props.history.push({
@@ -132,11 +132,11 @@ class ExistingCus extends Component {
                                 <div className="col-md-12 buttons">
                                     <div className="row">
                                         <div className="col-md-6">
-                                            <button className="btn btn-block">Back</button>
+                                            <a href="/mobsearch"><button className="btn btn-block">Back</button></a>
                                         </div>
 
                                         <div className="col-md-6">
-                                            <button className="btn btn-block">Cancel</button>
+                                            <a href="/userdashboard"><button className="btn btn-block">Cancel</button></a>
                                         </div>
 
                                     </div>

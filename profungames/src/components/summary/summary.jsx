@@ -75,23 +75,20 @@ class Summary extends Component {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="row">
                                 <div className="col-md-12 buttons">
-                                    <div className="">
-                                        <nav aria-label="Page navigation example">
-                                            <ul className="pagination justify-content-center">
+                                    <div className="row">
+                                        <div className="col-md-6">
+                                            <a href="/eventselection"><button className="btn btn-block">Back</button></a>
+                                        </div>
 
-                                                <li className="page-item col-md-6">
-                                                    <a className="page-link" href="#" tabindex="+1" onClick={this.onsubmit}>
-                                                        Confirm
-                          </a>
-                                                </li>
-                                            </ul>
-                                        </nav>
+                                        <div className="col-md-6">
+                                            <a href="/coupon"><button className="btn btn-block">Confirm</button></a>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>

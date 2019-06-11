@@ -54,7 +54,7 @@ class Login extends Component {
     render() {
         return (
             <div className="row">
-                <div className="col-md-12">
+                <div className="col-md-12 login">
                     <div className="row">
                         <div className="col-md-6 l6" />
                         <div className="col-md-6 r6">
@@ -107,11 +107,9 @@ class Login extends Component {
                                         <p id="emailerror" className="text-danger" />
                                         <button className="btn btn-block" type="submit">
                                             login
-                    </button>
+                                        </button>
 
-                                        <div className="col-md-12 a-12">
-                                            <a href="#">forgot password?</a>
-                                        </div>
+
                                     </form>
                                 </div>
                             </div>

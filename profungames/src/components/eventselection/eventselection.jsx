@@ -24,9 +24,9 @@ class EventSelection extends Component {
             array: null,
             listofproducts: sessionStorage.getItem("products"),
             productname: null,
-            packagename: null
+            packagename: null,
+            rfidId: null
         };
-        console.log(this.props.details);
     }
 
     async  componentDidMount() {
@@ -46,7 +46,9 @@ class EventSelection extends Component {
         let search = window.location.search;
         let params = new URLSearchParams(search);
         let foo = params.get('childname');
-        this.setState({ childname: foo })
+        this.setState({ childname: foo });
+
+
     }
 
     onformsubmit = (evt) => {
@@ -58,7 +60,9 @@ class EventSelection extends Component {
             ProductID: this.state.ProductID,
             money: this.state.money,
             productname: this.state.productname,
-            packagename: this.state.packagename
+            packagename: this.state.packagename,
+            rfidId: this.state.rfidId
+
         })
         localStorage.setItem("productdetails", JSON.stringify(packagedetails));
         this.props.history.push({
@@ -66,6 +70,12 @@ class EventSelection extends Component {
         });
     }
 
+
+    _handelkeydown = function (e) {
+        if (e.key === 'Enter') {
+            alert("hy");
+        }
+    }
 
     render() {
         let AllListofProducts = JSON.parse(this.state.listofproducts);
@@ -80,7 +90,7 @@ class EventSelection extends Component {
                             <div className="row">
                                 <div className="col-md-12">
                                     <div className="evenrform">
-                                        <form onSubmit={this.onformsubmit}>
+                                        <form onkeypress="return event.keyCode != 13;" >
                                             <div className="f-12">
                                                 <label>child name : <span className="capital"> {this.state.childname} </span></label>
                                             </div>
@@ -129,6 +139,12 @@ class EventSelection extends Component {
                                                     type="text"
                                                     placeholder="enter rfid"
                                                     className="form-control"
+                                                    value={this.state.rfidId}
+                                                    onChange={evt => {
+                                                        this.setState({ rfidId: evt.target.value });
+                                                    }}
+
+                                                    onkeypress={this._handelkeydown}
                                                 />
                                             </div>
                                             <div className="f-12">
@@ -139,7 +155,7 @@ class EventSelection extends Component {
                                                     <div className="row">
 
                                                         <div className="col-md-6 text-left">
-                                                            <button className="btn btn-block" type="submit">Next</button>
+                                                            <button className="btn btn-block" onClick={this.onformsubmit}>Next</button>
                                                         </div>
                                                     </div>
                                                 </div>

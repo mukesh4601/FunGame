@@ -26,7 +26,7 @@ class MenuBar extends Component {
                         collapseOnSelect
                         expand="lg"
                         className="navigation" >
-                        <Navbar.Brand href="#">logo</Navbar.Brand>
+                        <Navbar.Brand href="#">FunGames</Navbar.Brand>
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                         <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
                             <Link to="/userdashboard">home</Link>

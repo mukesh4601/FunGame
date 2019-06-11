@@ -1,14 +1,14 @@
 .l6 {
     background-image: url(../../assests/images/rightlog.jpeg);
     background-size: contain;
-    background-position: center;
+    background-position: bottom;
     background-repeat: no-repeat;
     margin-top: 30px;
 }
 
 .r6 {
     padding: 80px 50px;
-    margin-top: 120px;
+    margin-top: 100px;
 }
 
 .r6 input {
@@ -53,7 +53,7 @@
 .a-12 a {
     font-size: 16px;
     text-transform: capitalize;
-    color: #326dcc;
+    color: #0E2DA5;
     text-decoration: underline;
 }
 
@@ -69,23 +69,23 @@ button {
     font-size: 14px !important;
     font-weight: 600 !important;
     padding: 10px 20px !important;
-    background-color: #326dcc !important;
+    background-color: #0E2DA5 !important;
     color: #fff !important;
     border-radius: 0px !important;
     text-transform: uppercase;
-    border: 1px solid #326dcc !important;
+    border: 1px solid #0E2DA5 !important;
     text-align: center !important;
 }
 
 button:hover {
     background-color: #fff !important;
-    color: #326dcc !important;
+    color: #0E2DA5 !important;
 }
 
 button:focus {
     box-shadow: none !important;
 }
-.small
-{
+
+.small {
     text-transform: initial !important;
 }

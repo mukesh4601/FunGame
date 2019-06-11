@@ -4,7 +4,8 @@ import { BACKEND_URL } from "../../config.js";
 
 const DASHBOARD_STATUS = createAction("DASHBOARD_STATUS");
 const ACTIVITY = createAction("ACTIVITY");
-
+const END = createAction("END");
+const EXTEND = createAction("EXTEND");
 export const dashboardata = values => dispatch => {
     return axios.get(
         BACKEND_URL + "api/Activity", {
@@ -17,13 +18,11 @@ export const dashboardata = values => dispatch => {
         dispatch(DASHBOARD_STATUS(res.data.items));
     })
         .catch(err => {
-            console.log(err.response.data.errorMessage);
             return Promise.reject();
         })
 };
 
 export const activity = values => dispatch => {
-    console.log(values);
     return axios.post(
         BACKEND_URL + "api/activity", {
             CustomerID: values.CustomerID,
@@ -39,13 +38,67 @@ export const activity = values => dispatch => {
         }
     ).then(res => {
         dispatch(ACTIVITY(res.data.item));
-        console.log(res.data.item);
     })
         .catch(error => {
+            document.getElementById("error").innerHTML = "Check All Entries Carefully";
             return Promise.reject();
         });
 };
 
+
+
+export const end = values => dispatch => {
+    console.log(values);
+    return axios.post(
+        BACKEND_URL + "api/Activity/end/" + values.activityId,
+        {
+            MoneyCollected: values.MoneyCollected,
+            PackageID: values.PackageID,
+            PackageDuration: values.PackageDuration,
+            PaymentReference: "Some reference"
+        },
+        {
+            headers: {
+                Authorization: localStorage.getItem("token")
+            }
+        }
+    ).then(res => {
+        alert("Ended Successfully");
+        window.location.reload();
+        dispatch(END());
+    }).catch(error => {
+        alert("Something Went Wrong");
+        return Promise.reject();
+    });
+};
+
+
+
+export const Extend = values => dispatch => {
+    console.log(values);
+    return axios.put(
+        BACKEND_URL + "api/Activity/" + values.activityId,
+        {
+            MoneyCollected: values.MoneyCollected,
+            PackageID: values.PackageID,
+            PackageDuration: values.PackageDuration,
+            PaymentReference: "Some reference",
+
+        },
+        {
+            headers: {
+                Authorization: localStorage.getItem("token")
+            }
+        }
+    ).then(res => {
+        alert("Extended Successfully");
+        window.location.reload();
+        dispatch(EXTEND());
+    }).catch(error => {
+        alert("Something Went Wrong");
+        return Promise.reject();
+    });
+};
 
 
 

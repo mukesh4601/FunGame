@@ -16,7 +16,8 @@ class Coupons extends Component {
             modeofpayment: "Cash",
             finalpayment: null,
             couponcode: null,
-            RFIDID: null
+            RFIDID: null,
+            moneycollected: null
         };
     }
     async  componentDidMount() {
@@ -34,7 +35,6 @@ class Coupons extends Component {
             payment: presult.money,
             finalpayment: presult.money
         });
-        console.log(this.props.payment.modeofpayment.items);
         let paymentmode = [];
         for (var i = 0; i < paymentmode; i++) {
 
@@ -59,13 +59,13 @@ class Coupons extends Component {
         let presult = JSON.parse(productdetail);
         await this.props.activity({
             CustomerID: result.customerID,
-            ActualMoneyCollected: this.state.finalpayment,
+            ActualMoneyCollected: this.state.moneycollected,
             TotalPackageCost: this.state.payment,
             Childs: [{
                 ChildID: result.childId,
                 PackageID: presult.ProductID,
                 RFIDFlag: true,
-                RFIDID: this.state.RFIDID
+                RFIDID: presult.rfidId
             }]
         }).then(() => {
             this.props.history.push({
@@ -119,7 +119,29 @@ class Coupons extends Component {
                                                     </div>
                                                 </div>
                                                 <div className="f-12 ">
-                                                    <label>final amount : <strong> {this.state.finalpayment}</strong></label>
+                                                    <label>final amount : <strong> {this.state.payment}</strong></label>
+                                                </div>
+
+
+
+                                                <div className="form-group f-12">
+                                                    <label>Enter Ammount  Return/Collected</label>
+                                                    <input
+                                                        type="number"
+                                                        value={this.state.moneycollected}
+                                                        onChange={evt => {
+                                                            this.setState({ moneycollected: evt.target.value });
+                                                        }}
+                                                        placeholder="Enter Ammount to be Collected"
+                                                        className="form-control small"
+                                                    />
+
+                                                </div>
+
+                                                <div className="f-12 ">
+                                                    <label>
+                                                        Total Ammount to be collected : <strong>{this.state.payment - this.state.moneycollected}</strong>
+                                                    </label>
                                                 </div>
                                                 <div className="row">
                                                     <div className="col-md-12 buttons">
@@ -129,6 +151,9 @@ class Coupons extends Component {
                                                             </div> */}
                                                             <div className="col-md-6 text-left">
                                                                 <button className="btn btn-block" type="submit">Buy</button>
+                                                            </div>
+                                                            <div classNamecol-md-12>
+                                                                <p id="error" className="text-danger"></p>
                                                             </div>
                                                         </div>
                                                     </div>

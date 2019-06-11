@@ -1,27 +1,43 @@
 import React, { Component } from "react";
-import { Modal}  from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
+import Extend from "../extend/extend";
+import End from "../end/end";
 import "./dangerzone.css";
+import { connect } from "react-redux";
+import actions from "../../../../Store/Actions/Index";
+import { withRouter } from "react-router";
 
-class DangerZone extends Component {
-    constructor(props, context) {
-        super(props, context);
+
+class dangerzone extends Component {
+    constructor(props) {
+        super();
         this.state = {
-            show: false,
+            show: null,
+            show1: null
         };
         this.handleShow = this.handleShow.bind(this);
         this.handleClose = this.handleClose.bind(this);
+        this.handleShow1 = this.handleShow1.bind(this);
+        this.handleClose1 = this.handleClose1.bind(this);
     }
-
     handleClose() {
         this.setState({ show: false });
-      }
-    
-      handleShow() {
+    }
+
+    handleShow() {
         this.setState({ show: true });
-      }
-    
+    }
+
+    handleClose1() {
+        this.setState({ show1: false });
+    }
+
+    handleShow1() {
+        this.setState({ show1: true });
+    }
     render() {
+        console.log(this.props.data);
         return (
 
             <div className="col-md-3 pd12">
@@ -35,29 +51,32 @@ class DangerZone extends Component {
                     <div className="col-md-12 butn2">
                         <div className="row">
                             <div className="col-md-6 btn-1">
-                                <button className="btn btn-block">
+                                <Button className="btn btn-block" onClick={this.handleShow1}>
                                     end
-                                </button>
-                              
+                                </Button>
+                                <Modal show={this.state.show1} onHide={this.handleClose1} className="extendpanel">
+                                    <Modal.Header closeButton>
+                                        <Modal.Title>End Package</Modal.Title>
+                                    </Modal.Header>
+                                    <Modal.Body>
+                                        <End extend={this.props.data} />
+                                    </Modal.Body>
+                                </Modal>
+
                             </div>
                             <div className="col-md-6 btn-2">
-                                <Button className="btn btn-block"  onClick={this.handleShow}>
+                                <Button className="btn btn-block" onClick={this.handleShow}>
                                     extend
                                 </Button>
-                                <Modal show={this.state.show} onHide={this.handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={this.handleClose}>
-              Close
-            </Button>
-            <Button variant="primary" onClick={this.handleClose}>
-              Save Changes
-            </Button>
-          </Modal.Footer>
-        </Modal>
+                                <Modal show={this.state.show} onHide={this.handleClose} className="extendpanel">
+                                    <Modal.Header closeButton>
+                                        <Modal.Title>Extend Package</Modal.Title>
+                                    </Modal.Header>
+                                    <Modal.Body>
+                                        <Extend extend={this.props.data} />
+                                    </Modal.Body>
+
+                                </Modal>
                             </div>
                         </div>
                     </div>
@@ -68,4 +87,19 @@ class DangerZone extends Component {
     }
 }
 
-export default DangerZone;
+
+const mapStateToProps = state => ({
+    products: state.allproducts,
+    details: state.newuser
+});
+const mapDispatchToProps = dispatch => ({
+    end: v => dispatch(actions.end(v)),
+    extend: v => dispatch(actions.extend(v)),
+});
+
+export default withRouter(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    )(dangerzone)
+);

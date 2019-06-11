@@ -56,7 +56,7 @@ select:focus {
 }
 
 .childtbl p {
-    color: #2f6ac8;
+    color: #0E2DA5;
     font-size: 16px;
     text-transform: uppercase;
     font-weight: bolder;
@@ -82,18 +82,18 @@ select:focus {
     font-size: 14px !important;
     font-weight: 600 !important;
     padding: 12px 20px !important;
-    background-color: #326dcc !important;
+    background-color: #0E2DA5 !important;
     color: #fff !important;
     border-radius: 0px;
     text-transform: uppercase;
-    border: 1px solid #326dcc;
+    border: 1px solid #0E2DA5;
     text-align: center;
     border-radius: 0px !important;
 }
 
 .buttons li a:hover {
     background-color: #fff !important;
-    color: #326dcc !important;
+    color: #0E2DA5 !important;
     border: 1px solid #326dcc;
 }
 
@@ -115,16 +115,3 @@ select:focus {
     height: 100vh;
     overflow: scroll;
 }
-
-/* .lnc {
-  position: fixed;
-  min-height: 100vh;
-}
-.rnc {
-  margin-left: 613px;
-  position: absolute !important;
-  top: 0;
-  height: 100vh;
-  overflow: scroll;
-  padding: 80px 0px;
-} */
