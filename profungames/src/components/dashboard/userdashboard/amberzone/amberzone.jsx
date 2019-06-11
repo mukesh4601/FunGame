@@ -16,6 +16,8 @@ class AmberZone extends Component {
         };
         this.handleShow = this.handleShow.bind(this);
         this.handleClose = this.handleClose.bind(this);
+        this.handleShow1 = this.handleShow1.bind(this);
+        this.handleClose1 = this.handleClose1.bind(this);
     }
     handleClose() {
         this.setState({ show: false });

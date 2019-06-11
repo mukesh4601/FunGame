@@ -17,7 +17,7 @@ class UserDashboard extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            key: 'dangerzone',
+            key: 'safezone',
             mobilenumber: null,
             child: [],
             childname: null,

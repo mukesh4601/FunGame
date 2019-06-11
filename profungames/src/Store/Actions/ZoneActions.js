@@ -40,7 +40,7 @@ export const activity = values => dispatch => {
         dispatch(ACTIVITY(res.data.item));
     })
         .catch(error => {
-            document.getElementById("error").innerHTML = "Check All Entries Carefully";
+            document.getElementById("error").innerHTML = error.response.data.errorMessage;
             return Promise.reject();
         });
 };

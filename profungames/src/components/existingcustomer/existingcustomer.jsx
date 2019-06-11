@@ -115,8 +115,7 @@ class ExistingCus extends Component {
                                                 <tr>
                                                     <td>{alluser.name}</td>
                                                     <td>{alluser.dateOfBirth}</td>
-                                                    {/* <td>{this.state.age}</td> */}
-                                                    <td>{alluser.sex}</td>
+                                                    <td>{alluser.sex ? "Female" : "Male"}</td>
                                                     <td>
                                                         <a href="#" onClick={(evt) => this.onsubmit(alluser)}>
                                                             <i class="fa fa-arrow-right" aria-hidden="true"></i> Book Packages
