@@ -52,8 +52,8 @@ class EventSelection extends Component {
     }
 
     onformsubmit = (evt) => {
+        debugger
         evt.preventDefault();
-
         let packagedetails = ({
             packageduration: this.state.packageduration,
             packageID: this.state.packageID,
@@ -90,7 +90,7 @@ class EventSelection extends Component {
                             <div className="row">
                                 <div className="col-md-12">
                                     <div className="evenrform">
-                                        <form onkeypress="return event.keyCode != 13;" >
+                                        <form  >
                                             <div className="f-12">
                                                 <label>child name : <span className="capital"> {this.state.childname} </span></label>
                                             </div>
@@ -143,8 +143,12 @@ class EventSelection extends Component {
                                                     onChange={evt => {
                                                         this.setState({ rfidId: evt.target.value });
                                                     }}
-
-                                                    onkeypress={this._handelkeydown}
+                                                    onKeyPress={(event) => {
+                                                        if (event.charCode === 13) {
+                                                            event.preventDefault();
+                                                            return false;
+                                                        }
+                                                    }}
                                                 />
                                             </div>
                                             <div className="f-12">
@@ -153,9 +157,8 @@ class EventSelection extends Component {
                                             <div className="row">
                                                 <div className="col-md-12 buttons">
                                                     <div className="row">
-
                                                         <div className="col-md-6 text-left">
-                                                            <button className="btn btn-block" onClick={this.onformsubmit}>Next</button>
+                                                            <button className="btn btn-block" onClick={this.onformsubmit.bind(this)}>Next</button>
                                                         </div>
                                                     </div>
                                                 </div>
