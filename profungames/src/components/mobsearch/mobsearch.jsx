@@ -31,9 +31,15 @@ class MobSearch extends Component {
         else {
             document.getElementById("mobileerror").innerHTML = "";
             this.props.searchmobile({ mobileno: this.state.mobileno }).then(() => {
-                this.props.history.push({
-                    // pathname: '/newentry'
-                });
+
+                if (this.props.Mob.userdetails.didError == false) {
+                    localStorage.setItem("mobilenumber", this.props.Mob.userdetails.item.mobileNbr);
+                    this.props.history.push('/existingcus');
+                }
+                else {
+                    this.props.history.push('/newentry?mobilenumber=' + this.state.mobileno);
+                }
+
             })
             return;
         }

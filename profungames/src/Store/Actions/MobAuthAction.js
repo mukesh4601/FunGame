@@ -1,9 +1,7 @@
 import { createAction } from "redux-actions";
 import axios from "axios";
 import { BACKEND_URL } from "../../config.js";
-import { createBrowserHistory } from 'history';
-
-export default createBrowserHistory();
+import history from '../../history';
 
 
 const SEARCH_MOBILE = createAction("SEARCH_MOBILE");
@@ -17,19 +15,7 @@ export const searchmobile = values => dispatch => {
             }
         }
     ).then(res => {
-
-        if (res.data.didError === false) {
-            localStorage.setItem("mobilenumber", values.mobileno);
-            window.location.href = '/existingcus';
-            dispatch(SEARCH_MOBILE(res.data));
-            console.log(res.data);
-        }
-
-        else {
-            window.location.href = '/newentry?mobilenumber=' + values.mobileno;
-            dispatch(SEARCH_MOBILE(res.data));
-        }
-        console.log(res.data.didError);
+        dispatch(SEARCH_MOBILE(res.data));
     })
 };
 

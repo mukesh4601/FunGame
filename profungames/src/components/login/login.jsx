@@ -65,7 +65,7 @@ class Login extends Component {
                                         <div className="form-group f-12">
                                             <label>emailid</label>
                                             <input
-                                                type="email"
+                                                type="text"
                                                 value={this.state.username}
                                                 onChange={evt => {
                                                     this.setState({ username: evt.target.value });
