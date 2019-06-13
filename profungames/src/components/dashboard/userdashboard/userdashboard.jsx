@@ -37,6 +37,10 @@ class UserDashboard extends Component {
             });
         }
         await this.props.dashboardata();
+
+
+        this.interval = setInterval(() => this.props.dashboardata(), 30000);
+
         await this.props.allproducts();
         let allproducts = [];
         let allpackages = [];
@@ -49,6 +53,11 @@ class UserDashboard extends Component {
         let result = sessionStorage.getItem("items");
         console.log(result);
     }
+
+
+    // componentWillReceiveProps() {
+    //     this.props.dashboardata();
+    // }
 
     safeZoneMarkup() {
         let t = [];

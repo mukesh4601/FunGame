@@ -90,7 +90,7 @@ class EventSelection extends Component {
                             <div className="row">
                                 <div className="col-md-12">
                                     <div className="evenrform">
-                                        <form  >
+                                        <form onSubmit={this.onformsubmit.bind(this)}>
                                             <div className="f-12">
                                                 <label>child name : <span className="capital"> {this.state.childname} </span></label>
                                             </div>
@@ -101,6 +101,14 @@ class EventSelection extends Component {
                                                     <Form.Control as="select" value={this.state.firstName}
                                                         onChange={(evt) => {
                                                             let productresult = JSON.parse(evt.target.value);
+                                                            let timeDependentFlag = productresult.timeDependentFlag;
+                                                            document.getElementById("packagesselect").style.display = "block";
+                                                            if (timeDependentFlag === true) {
+                                                                document.getElementById("RFIDBOX").style.display = "block"
+                                                            }
+                                                            else if (timeDependentFlag === false) {
+                                                                document.getElementById("RFIDBOX").style.display = "none"
+                                                            }
                                                             let product = AllListofProducts.filter((p) => p.productID == productresult.productID);
                                                             let packages = product[0].linkedPackages || [];
                                                             this.setState({ 'selectedProduct': evt.target.value, 'linkedPackages': packages, ProductID: productresult.productID, productname: productresult.name })
@@ -115,7 +123,7 @@ class EventSelection extends Component {
 
                                             </div>
 
-                                            <div className="form-group f-12" >
+                                            <div className="form-group f-12" id="packagesselect" style={{ display: "none" }}>
                                                 <label>select package</label>
 
                                                 <Form.Group controlId="formBasicName">
@@ -133,7 +141,7 @@ class EventSelection extends Component {
                                                     </Form.Control>
                                                 </Form.Group>
                                             </div>
-                                            <div className="f-12">
+                                            <div className="f-12" id="RFIDBOX" style={{ display: "none" }}>
                                                 <label>RFID</label>
                                                 <input
                                                     type="text"
@@ -158,7 +166,7 @@ class EventSelection extends Component {
                                                 <div className="col-md-12 buttons">
                                                     <div className="row">
                                                         <div className="col-md-6 text-left">
-                                                            <button className="btn btn-block" onClick={this.onformsubmit.bind(this)}>Next</button>
+                                                            <button className="btn btn-block" >Next</button>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -64,7 +64,6 @@ export const end = values => dispatch => {
         }
     ).then(res => {
         alert("Ended Successfully");
-        window.location.reload();
         dispatch(END());
     }).catch(error => {
         alert("Something Went Wrong");
@@ -92,7 +91,6 @@ export const Extend = values => dispatch => {
         }
     ).then(res => {
         alert("Extended Successfully");
-        window.location.reload();
         dispatch(EXTEND());
     }).catch(error => {
         alert("Something Went Wrong");
